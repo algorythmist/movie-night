@@ -1,16 +1,20 @@
 package com.tecacet.movie.service.memory;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Director {
+import com.tecacet.movie.domain.Director;
+import com.tecacet.movie.domain.Movie;
+
+public class ImmutableDirector implements Director {
 
 	private final String name;
 	private final double rating;
-	private final int movies;
+	private final List<? extends Movie> movies;
 	private final Set<String> genres;
 
-	public Director(String name, double rating, int movies, Set<String> genres) {
+	public ImmutableDirector(String name, double rating, List<? extends Movie> movies, Set<String> genres) {
 		super();
 		this.name = name;
 		this.rating = Math.round(rating * 100) / 100.;
@@ -18,19 +22,23 @@ public class Director {
 		this.genres = new TreeSet<>(genres);
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public double getRating() {
 		return rating;
 	}
 
+	@Override
 	public Set<String> getGenres() {
 		return genres;
 	}
 
-	public int getMovies() {
+	@Override
+	public List<? extends Movie> getMovies() {
 		return movies;
 	}
 
@@ -44,7 +52,7 @@ public class Director {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof Director)) {
+		if (!(other instanceof ImmutableDirector)) {
 			return false;
 		}
 		Director director = (Director) other;
@@ -53,6 +61,7 @@ public class Director {
 
 	@Override
 	public String toString() {
-		return String.format("%s: %.2f. Movies = %d. Genres = %s", getName(), getRating(), getMovies(), getGenres());
+		return String.format("%s: Rating = %.2f. Movies = %d. Genres = %s", getName(), getRating(),
+				getMovies().size(), getGenres());
 	}
 }

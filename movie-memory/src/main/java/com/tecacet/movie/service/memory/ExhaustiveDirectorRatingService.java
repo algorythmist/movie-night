@@ -12,8 +12,10 @@ import java.util.stream.IntStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tecacet.movie.domain.Director;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
+import com.tecacet.movie.service.DirectorRatingService;
 import com.tecacet.movie.service.MovieService;
 
 /**
@@ -32,10 +34,10 @@ public class ExhaustiveDirectorRatingService implements DirectorRatingService {
 		this.movieService = movieService;
 	}
 
-	public List<Director> findTopDirectors(int top) {
-		Comparator<Director> ratingComparator = Comparator.comparing(Director::getRating).reversed();
-		Comparator<Director> movieComparator = Comparator.comparing(Director::getMovies).reversed();
-		Queue<Director> directors = new PriorityQueue<>(ratingComparator.thenComparing(movieComparator));
+	public List<ImmutableDirector> findTopDirectors(int top) {
+		Comparator<ImmutableDirector> ratingComparator = Comparator.comparing(ImmutableDirector::getRating).reversed();
+		Comparator<Director> movieComparator = Comparator.comparing(d -> d.getMovies().size());
+		Queue<ImmutableDirector> directors = new PriorityQueue<>(ratingComparator.thenComparing(movieComparator.reversed()));
 		logger.info("Comparing {} directors", directors.size());
 		for (Person person : movieService.getAllDirectors()) {
 			List<? extends Movie> movies = movieService.findMoviesWithDirector(person.getName());
@@ -47,13 +49,13 @@ public class ExhaustiveDirectorRatingService implements DirectorRatingService {
 				continue;
 			}
 			Set<String> genres = getGenres(movies);
-			Director director = new Director(person.getName(), opt.getAsDouble(), movies.size(), genres);
+			ImmutableDirector director = new ImmutableDirector(person.getName(), opt.getAsDouble(), movies, genres);
 			directors.add(director);
 		}
 		return toList(directors, top);
 	}
 
-	private List<Director> toList(Queue<Director> directors, int size) {
+	private List<ImmutableDirector> toList(Queue<ImmutableDirector> directors, int size) {
 		int range = directors.size() < size ? directors.size() : size;
 		return IntStream.range(0, range).mapToObj(i -> directors.remove()).collect(Collectors.toList());
 	}
