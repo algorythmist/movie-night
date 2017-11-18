@@ -1,4 +1,4 @@
-package com.tecacet.movie.service;
+package com.tecacet.movie.service.spring;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tecacet.movie.config.ApplicationConfiguration;
 import com.tecacet.movie.domain.Director;
+import com.tecacet.movie.service.DirectorRatingService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { ApplicationConfiguration.class })

@@ -1,4 +1,4 @@
-package com.tecacet.movie.service;
+package com.tecacet.movie.service.spring;
 
 import java.util.List;
 import java.util.Set;

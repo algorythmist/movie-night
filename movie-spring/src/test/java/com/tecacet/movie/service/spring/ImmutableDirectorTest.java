@@ -1,4 +1,4 @@
-package com.tecacet.movie.service;
+package com.tecacet.movie.service.spring;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import com.tecacet.movie.domain.Director;
 import com.tecacet.movie.domain.Movie;
+import com.tecacet.movie.service.spring.ImmutableDirector;
 
 public class ImmutableDirectorTest {
 

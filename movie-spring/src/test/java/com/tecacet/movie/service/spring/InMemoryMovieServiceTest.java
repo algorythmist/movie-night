@@ -1,4 +1,4 @@
-package com.tecacet.movie.service;
+package com.tecacet.movie.service.spring;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,6 +16,7 @@ import com.tecacet.movie.config.ApplicationConfiguration;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
+import com.tecacet.movie.service.MovieService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= {ApplicationConfiguration.class})
