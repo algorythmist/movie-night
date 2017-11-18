@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tecacet</groupId>
-	<artifactId>movie-night</artifactId>
+	<artifactId>movie-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -13,20 +13,26 @@
 
 	<modules>
 		<module>movie-model</module>
-		<module>movie-parser</module>
-		<module>movie-data</module>
-		<module>movie-rest</module>
+		<module>movie-memory</module>
+		<module>movie-jpa</module>
+		<module>movie-boot</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.version>5.0.0.RELEASE</spring.version>
+		<slf4j.version>1.7.25</slf4j.version>
 		<junit.version>4.12</junit.version>
+		<jacoco.version>0.7.9</jacoco.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -34,4 +40,57 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<configuration>
+						<rules>
+							<rule>
+								<element>BUNDLE</element>
+								<limits>
+									<limit implementation="org.jacoco.report.check.Limit">
+										<counter>LINE</counter>
+										<value>COVEREDRATIO</value>
+										<minimum>${jacoco.coverage.lines}</minimum>
+									</limit>
+									<limit implementation="org.jacoco.report.check.Limit">
+										<counter>CLASS</counter>
+										<value>MISSEDCOUNT</value>
+										<maximum>0</maximum>
+									</limit>
+								</limits>
+							</rule>
+						</rules>
+					</configuration>
+					<executions>
+						<execution>
+							<id>pre-unit-test</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>post-unit-test</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>verify</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.tecacet</groupId>
+		<artifactId>movie-project</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>movie-memory</artifactId>
+
+	<properties>
+		<movie.version>0.0.1-SNAPSHOT</movie.version>
+		<jackson.version>2.9.2</jackson.version>
+		<jacoco.coverage.lines>0.90</jacoco.coverage.lines>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.tecacet</groupId>
+			<artifactId>movie-model</artifactId>
+			<version>${movie.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>
