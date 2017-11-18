@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.jpa.model.EntityGenre;
 import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.model.EntityPerson;
 import com.tecacet.movie.jpa.repository.GenreRepository;
+import com.tecacet.movie.jpa.repository.MovieGenreRepository;
 import com.tecacet.movie.jpa.repository.MoviePersonRepository;
 import com.tecacet.movie.jpa.repository.MovieRepository;
 import com.tecacet.movie.jpa.repository.PersonRepository;
@@ -22,15 +22,18 @@ public class RepositoryMovieService implements MovieService {
 	private final PersonRepository personRepository;
 	private final GenreRepository genreRepository;
 	private final MoviePersonRepository moviePersonRepository;
+	private final MovieGenreRepository movieGenreRepository;
 
 	@Autowired
 	public RepositoryMovieService(MovieRepository movieRepository, PersonRepository personRepository,
-			GenreRepository genreRepository, MoviePersonRepository moviePersonRepository) {
+			GenreRepository genreRepository, MoviePersonRepository moviePersonRepository,
+			MovieGenreRepository movieGenreRepository) {
 		super();
 		this.movieRepository = movieRepository;
 		this.personRepository = personRepository;
 		this.genreRepository = genreRepository;
 		this.moviePersonRepository = moviePersonRepository;
+		this.movieGenreRepository = movieGenreRepository;
 	}
 
 	@Override
@@ -69,9 +72,8 @@ public class RepositoryMovieService implements MovieService {
 	}
 
 	@Override
-	public List<Movie> findMoviesInGenre(String genreName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<EntityMovie> findMoviesInGenre(String genreName) {
+		return movieGenreRepository.findMoviesInGenre(genreName);
 	}
 
 }
