@@ -7,7 +7,6 @@
 	<artifactId>movie-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
 
 	<modules>
 		<module>movie-model</module>
@@ -15,6 +14,7 @@
 		<module>movie-jpa</module>
 		<module>movie-rest</module>
 		<module>movie-boot</module>
+		<module>movie-spring</module>
 	</modules>
 
 	<properties>
