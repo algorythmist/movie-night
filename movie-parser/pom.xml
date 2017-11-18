@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
+	
 	<parent>
 		<groupId>com.tecacet</groupId>
 		<artifactId>movie-project</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-
-	<artifactId>movie-memory</artifactId>
+		
+	<artifactId>movie-parser</artifactId>
 
 	<properties>
 		<movie.version>0.0.1-SNAPSHOT</movie.version>
@@ -25,9 +25,9 @@
 			<version>${movie.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.tecacet</groupId>
-			<artifactId>movie-parser</artifactId>
-			<version>${movie.version}</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -46,5 +46,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
