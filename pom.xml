@@ -7,14 +7,13 @@
 	<artifactId>movie-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
-	<name>movie-night</name>
-	<url>http://maven.apache.org</url>
+	
 
 	<modules>
 		<module>movie-model</module>
 		<module>movie-memory</module>
 		<module>movie-jpa</module>
+		<module>movie-rest</module>
 		<module>movie-boot</module>
 	</modules>
 
