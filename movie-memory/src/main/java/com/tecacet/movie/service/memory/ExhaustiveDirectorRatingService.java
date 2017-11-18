@@ -30,7 +30,6 @@ public class ExhaustiveDirectorRatingService implements DirectorRatingService {
 	private final MovieService movieService;
 
 	public ExhaustiveDirectorRatingService(MovieService movieService) {
-		super();
 		this.movieService = movieService;
 	}
 
