@@ -33,7 +33,7 @@ public class MoviePersonRepositoryTest {
 	private MoviePersonRepository moviePersonRepository;
 
 	@Test
-	public void testFindMoviesWithActor() {
+	public void findMoviesWithActor() {
 		EntityMovie movie1 = new EntityMovie("Elegance");
 		EntityMovie movie2 = new EntityMovie("Remorse");
 		movieRepository.saveAll(Arrays.asList(movie1, movie2));

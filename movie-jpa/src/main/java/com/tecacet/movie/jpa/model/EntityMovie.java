@@ -139,5 +139,10 @@ public class EntityMovie implements Movie {
 	public void addGenre(EntityGenre genre) {
 		genres.add(genre);
 	}
+	
+	@Override
+	public String toString() {
+		return getTitle();
+	}
 
 }
