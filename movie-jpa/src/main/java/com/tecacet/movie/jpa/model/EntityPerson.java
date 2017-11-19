@@ -18,6 +18,12 @@ public class EntityPerson implements Person {
 
 	private String name;
 	
+	
+	@SuppressWarnings("unused") //for HB
+	private EntityPerson() {
+		
+	}
+	
 	public EntityPerson(String name) {
 		super();
 		this.name = name;

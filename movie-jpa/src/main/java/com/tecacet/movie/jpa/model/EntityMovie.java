@@ -45,6 +45,12 @@ public class EntityMovie implements Movie {
 	@JoinTable(name = "movie_director", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "director_id", referencedColumnName = "id"))
 	private List<EntityPerson> directors = new ArrayList<>();
 
+	//for HB
+	@SuppressWarnings("unused")
+	private EntityMovie() {
+		
+	}
+	
 	public EntityMovie(String title) {
 		super();
 		this.title = title;
