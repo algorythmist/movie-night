@@ -1,9 +1,13 @@
+- flyway in tests
+- REST client app
+- change movie-boot to use jpa
+- change movie-rest to use jpa
 - Dynamic queries with criteria/spec
 - Validation 
 - CRUD endpoints
 - test vs dev database
 - AOP examples
-- REST client app
+- Mock web service
 - Monitoring with Java Console
 - Monitoring with Maven plugins
 - Mockito
