@@ -1,9 +1,9 @@
 - Dynamic queries with criteria/spec
-- AOP examples
-- negative tests
 - Monitoring with Java Console
 - Monitoring with Maven plugins
 - handle WS exceptions
+- better AOP example
+- negative tests
 
 - Mock web service
 - change movie-rest to use jpa
