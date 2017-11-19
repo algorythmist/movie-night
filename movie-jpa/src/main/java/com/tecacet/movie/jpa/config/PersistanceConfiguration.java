@@ -3,9 +3,12 @@ package com.tecacet.movie.jpa.config;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,17 +23,40 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableJpaRepositories(basePackages = { "com.tecacet.movie.jpa.repository" })
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.tecacet.movie.jpa.service")
+@PropertySource("classpath:database.properties")
 public class PersistanceConfiguration {
 
 	private static final String[] ENTITY_PACKAGES = { "com.tecacet.movie.jpa.model" };
 
+	@Value("${jdbc.driver}")
+	private String driver;
+	
+	@Value("${jdbc.url}")
+	private String url;
+	
+	@Value("${jdbc.username}")
+	private String username;
+	
+	@Value("${jdbc.password}")
+	private String password;
+
+	/**
+	 * Load properties from config file
+	 * 
+	 * @return
+	 */
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfig() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
 	@Bean(destroyMethod = "close")
 	public HikariDataSource dataSource() {
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setJdbcUrl("jdbc:h2:file:./movies;MODE=PostgreSQL");
-		hikariConfig.setUsername("sa");
-		hikariConfig.setPassword("");
-		hikariConfig.setDriverClassName("org.h2.Driver");
+		hikariConfig.setJdbcUrl(url);
+		hikariConfig.setUsername(username);
+		hikariConfig.setPassword(password);
+		hikariConfig.setDriverClassName(driver);
 		return new HikariDataSource(hikariConfig);
 	}
 
