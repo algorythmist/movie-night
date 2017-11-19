@@ -12,6 +12,7 @@
 	<artifactId>movie-jpa</artifactId>
 
 	<properties>
+		<movie.version>0.0.1-SNAPSHOT</movie.version>
 		<spring.version>5.0.1.RELEASE</spring.version>
 		<spring-data.version>2.0.0.RELEASE</spring-data.version>
 		<hikaricp.version>2.7.2</hikaricp.version>
@@ -24,7 +25,12 @@
 		<dependency>
 			<groupId>com.tecacet</groupId>
 			<artifactId>movie-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${movie.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.tecacet</groupId>
+			<artifactId>movie-parser</artifactId>
+			<version>${movie.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -93,7 +99,9 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
+	
+	<!--  TODO jacoco -->
 	<build>
 		<plugins>
 			<plugin>

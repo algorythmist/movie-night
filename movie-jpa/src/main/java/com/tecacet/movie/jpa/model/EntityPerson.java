@@ -17,11 +17,11 @@ public class EntityPerson implements Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private final String name;
+	private String name;
 	@Column(name = "actor")
-	private final boolean isActor;
+	private boolean isActor;
 	@Column(name = "director")
-	private final boolean isDirector;
+	private boolean isDirector;
 
 	public EntityPerson(String name, boolean isActor, boolean isDirector) {
 		super();
@@ -47,6 +47,14 @@ public class EntityPerson implements Person {
 	@Override
 	public boolean isDirector() {
 		return isDirector;
+	}
+
+	public void setActor(boolean isActor) {
+		this.isActor = isActor;
+	}
+
+	public void setDirector(boolean isDirector) {
+		this.isDirector = isDirector;
 	}
 
 	@Override
