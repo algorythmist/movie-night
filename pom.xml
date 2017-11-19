@@ -16,6 +16,7 @@
 		<module>movie-jpa</module>
 		<module>movie-rest</module>
 		<module>movie-boot</module>
+		<module>movie-client</module>
 	</modules>
 
 	<properties>
