@@ -24,7 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.tecacet.movie.jpa.service")
 @PropertySource("classpath:database.properties")
-public class PersistanceConfiguration {
+public class PersistenceConfiguration {
 
 	private static final String[] ENTITY_PACKAGES = { "com.tecacet.movie.jpa.model" };
 

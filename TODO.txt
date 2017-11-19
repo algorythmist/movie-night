@@ -1,15 +1,16 @@
+- endpoint to populate database
+- CRUD endpoints
 - REST client app
-- change movie-boot to use jpa
 - change movie-rest to use jpa
 - Dynamic queries with criteria/spec
 - Validation 
-- CRUD endpoints
-- test vs dev database
 - AOP examples
 - Mock web service
 - Monitoring with Java Console
 - Monitoring with Maven plugins
+
 - Mockito
+- deploy to staging database
 - read-only repositories
 
 possible data source: https://github.com/theapache64/movie_db

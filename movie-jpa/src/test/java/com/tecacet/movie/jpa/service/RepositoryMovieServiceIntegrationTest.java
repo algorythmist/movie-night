@@ -19,11 +19,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
-import com.tecacet.movie.jpa.config.PersistanceConfiguration;
+import com.tecacet.movie.jpa.config.PersistenceConfiguration;
 import com.tecacet.movie.service.MovieService;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { PersistanceConfiguration.class })
+@ContextConfiguration(classes = { PersistenceConfiguration.class })
 @Transactional
 public class RepositoryMovieServiceIntegrationTest {
 

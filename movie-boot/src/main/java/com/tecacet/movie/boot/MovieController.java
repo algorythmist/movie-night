@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
-import com.tecacet.movie.parser.JsonMovie;
 import com.tecacet.movie.service.MovieService;
 
 @RestController
@@ -32,7 +31,8 @@ public class MovieController {
 	public List<? extends Movie> getAllMovies() {
 		return movieService.getAllMovies();
 	}
-	
+
+	//TODO get from DB
 	@RequestMapping(value = "/{id}", method= RequestMethod.GET)
 	public Movie findMovieById(@PathVariable long id) {
 		return new Movie() {

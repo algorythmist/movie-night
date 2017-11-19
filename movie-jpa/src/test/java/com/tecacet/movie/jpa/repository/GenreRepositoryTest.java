@@ -14,11 +14,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.tecacet.movie.jpa.config.PersistanceConfiguration;
+import com.tecacet.movie.jpa.config.PersistenceConfiguration;
 import com.tecacet.movie.jpa.model.EntityGenre;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = { PersistanceConfiguration.class })
+@ContextConfiguration(classes = { PersistenceConfiguration.class })
 @Transactional
 public class GenreRepositoryTest {
 
