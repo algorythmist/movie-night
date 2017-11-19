@@ -21,7 +21,7 @@ import com.tecacet.movie.jpa.model.EntityPerson;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { PersistanceConfiguration.class })
 @Transactional
-public class MoviePersonRepositoryTest {
+public class MovieActorRepositoryTest {
 
 	@Autowired
 	private MovieRepository movieRepository;
@@ -30,7 +30,7 @@ public class MoviePersonRepositoryTest {
 	private PersonRepository personRepository;
 
 	@Autowired
-	private MoviePersonRepository moviePersonRepository;
+	private MovieActorRepository moviePersonRepository;
 
 	@Test
 	public void findMoviesWithActor() {
@@ -38,13 +38,13 @@ public class MoviePersonRepositoryTest {
 		EntityMovie movie2 = new EntityMovie("Remorse");
 		movieRepository.saveAll(Arrays.asList(movie1, movie2));
 
-		EntityPerson person1 = new EntityPerson("Tom", false, true);
-		EntityPerson person2 = new EntityPerson("Dale", true, true);
+		EntityPerson person1 = new EntityPerson("Tom");
+		EntityPerson person2 = new EntityPerson("Dale");
 		personRepository.saveAll(Arrays.asList(person1, person2));
 
-		movie1.addPerson(person1);
-		movie1.addPerson(person2);
-		movie2.addPerson(person2);
+		movie1.addDirector(person1);
+		movie1.addActor(person2);
+		movie2.addActor(person2);
 
 		List<EntityMovie> moviesWithActorTom = moviePersonRepository.findMoviesWithActor("Tom");
 		assertTrue(moviesWithActorTom.isEmpty());

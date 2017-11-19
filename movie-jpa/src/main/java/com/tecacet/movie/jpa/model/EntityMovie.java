@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,8 +38,12 @@ public class EntityMovie implements Movie {
 	private List<EntityGenre> genres = new ArrayList<>();
 
 	@ManyToMany
-	@JoinTable(name = "movie_person", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "person_id", referencedColumnName = "id"))
-	private List<EntityPerson> persons = new ArrayList<>();
+	@JoinTable(name = "movie_actor", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id"))
+	private List<EntityPerson> actors = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "movie_director", joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "director_id", referencedColumnName = "id"))
+	private List<EntityPerson> directors = new ArrayList<>();
 
 	public EntityMovie(String title) {
 		super();
@@ -117,19 +120,23 @@ public class EntityMovie implements Movie {
 		this.imageUrl = imageUrl;
 	}
 
-	public void addPerson(EntityPerson person) {
-		persons.add(person);
+	public void addActor(EntityPerson person) {
+		actors.add(person);
+	}
+	
+	public void addDirector(EntityPerson person) {
+		directors.add(person);
 	}
 
 	@Override
-	public List<String> getActors() {
-		return persons.stream().filter(EntityPerson::isActor).map(EntityPerson::getName).sorted().collect(Collectors.toList());
+	public List<EntityPerson> getActors() {
+		return actors;
 	}
 
 	@Override
-	public List<String> getDirectors() {
-		return persons.stream().filter(EntityPerson::isDirector).map(EntityPerson::getName).sorted().collect(Collectors.toList());
-	}
+	public List<EntityPerson> getDirectors() {
+		return directors;
+	}			
 
 	@Override
 	public List<? extends Genre> getGenres() {

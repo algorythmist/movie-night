@@ -143,16 +143,16 @@ public class InMemoryMovieService implements MovieService {
 	}
 
 	private void registerDirectors(Movie movie) {
-		for (String name : movie.getDirectors()) {
-			EnrichedPerson person = findPerson(name);
+		for (Person p : movie.getDirectors()) {
+			EnrichedPerson person = findPerson(p.getName());
 			person.addMovieDirected(movie);
 			person.setDirector(true);
 		}
 	}
 
 	private void registerActors(Movie movie) {
-		for (String name : movie.getActors()) {
-			EnrichedPerson person = findPerson(name);
+		for (Person p : movie.getActors()) {
+			EnrichedPerson person = findPerson(p.getName());
 			person.addMovieActed(movie);
 			person.setActor(true);
 		}

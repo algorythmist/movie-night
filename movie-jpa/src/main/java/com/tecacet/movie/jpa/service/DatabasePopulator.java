@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tecacet.movie.domain.Person;
 import com.tecacet.movie.jpa.model.EntityGenre;
 import com.tecacet.movie.jpa.model.EntityPerson;
 import com.tecacet.movie.jpa.repository.GenreRepository;
@@ -58,21 +59,20 @@ public class DatabasePopulator {
 	private Collection<EntityPerson> getPeople(List<JsonMovie> movies) {
 		Map<String, EntityPerson> people = new HashMap<>();
 		for (JsonMovie movie : movies) {
-			for (String actor : movie.getActors()) {
+			for (Person actor : movie.getActors()) {
 				EntityPerson person = people.get(actor);
 				if (person == null) {
-					person = new EntityPerson(actor, true, false);
-					people.put(actor, person);
+					person = new EntityPerson(actor.getName());
+					people.put(actor.getName(), person);
 				}
-				person.setActor(true);
+
 			}
-			for (String director : movie.getDirectors()) {
+			for (Person director : movie.getDirectors()) {
 				EntityPerson person = people.get(director);
 				if (person == null) {
-					person = new EntityPerson(director, false, true);
-					people.put(director, person);
+					person = new EntityPerson(director.getName());
+					people.put(director.getName(), person);
 				}
-				person.setDirector(true);
 			}
 		}
 		return people.values();

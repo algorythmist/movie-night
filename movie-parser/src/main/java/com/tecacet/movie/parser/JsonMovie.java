@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
+import com.tecacet.movie.domain.Person;
 
 /**
  * Movie implementation with Jackson annotations for mapping to JSON
@@ -24,7 +25,23 @@ public class JsonMovie implements Movie {
 		private final String name;
 
 		public SimpleGenre(String name) {
-			super();
+			this.name = name;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		@Override
+		public String toString() {
+			return name;
+		}
+	}
+	
+	private class SimplePerson implements Person {
+		private final String name;
+
+		public SimplePerson(String name) {
 			this.name = name;
 		}
 
@@ -127,13 +144,13 @@ public class JsonMovie implements Movie {
 	}
 
 	@Override
-	public List<String> getDirectors() {
-		return info.getDirectors();
+	public List<? extends Person> getDirectors() {
+		return info.getDirectors().stream().map(name -> new SimplePerson(name)).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<String> getActors() {
-		return info.getActors();
+	public List<? extends Person> getActors() {
+		return info.getActors().stream().map(name -> new SimplePerson(name)).collect(Collectors.toList());
 	}
 
 	@Override

@@ -20,9 +20,9 @@ public interface Movie {
 
 	String getImageUrl();
 	
-	List<String> getActors();
+	List<? extends Person> getActors();
 
-	List<String> getDirectors();
+	List<? extends Person> getDirectors();
 
 	List<? extends Genre> getGenres();
 

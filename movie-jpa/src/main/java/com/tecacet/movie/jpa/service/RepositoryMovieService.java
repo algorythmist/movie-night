@@ -9,8 +9,9 @@ import com.tecacet.movie.jpa.model.EntityGenre;
 import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.model.EntityPerson;
 import com.tecacet.movie.jpa.repository.GenreRepository;
+import com.tecacet.movie.jpa.repository.MovieActorRepository;
+import com.tecacet.movie.jpa.repository.MovieDirectorRepository;
 import com.tecacet.movie.jpa.repository.MovieGenreRepository;
-import com.tecacet.movie.jpa.repository.MoviePersonRepository;
 import com.tecacet.movie.jpa.repository.MovieRepository;
 import com.tecacet.movie.jpa.repository.PersonRepository;
 import com.tecacet.movie.service.MovieService;
@@ -21,18 +22,20 @@ public class RepositoryMovieService implements MovieService {
 	private final MovieRepository movieRepository;
 	private final PersonRepository personRepository;
 	private final GenreRepository genreRepository;
-	private final MoviePersonRepository moviePersonRepository;
+	private final MovieActorRepository movieActorRepository;
+	private final MovieDirectorRepository movieDirectorRepository;
 	private final MovieGenreRepository movieGenreRepository;
 
 	@Autowired
 	public RepositoryMovieService(MovieRepository movieRepository, PersonRepository personRepository,
-			GenreRepository genreRepository, MoviePersonRepository moviePersonRepository,
-			MovieGenreRepository movieGenreRepository) {
+			GenreRepository genreRepository, MovieActorRepository movieActorRepository,
+			MovieDirectorRepository movieDirectorRepository, MovieGenreRepository movieGenreRepository) {
 		super();
 		this.movieRepository = movieRepository;
 		this.personRepository = personRepository;
 		this.genreRepository = genreRepository;
-		this.moviePersonRepository = moviePersonRepository;
+		this.movieActorRepository = movieActorRepository;
+		this.movieDirectorRepository = movieDirectorRepository;
 		this.movieGenreRepository = movieGenreRepository;
 	}
 
@@ -63,12 +66,12 @@ public class RepositoryMovieService implements MovieService {
 
 	@Override
 	public List<EntityMovie> findMoviesWithActor(String actorName) {
-		return moviePersonRepository.findMoviesWithActor(actorName);
+		return movieActorRepository.findMoviesWithActor(actorName);
 	}
 
 	@Override
 	public List<EntityMovie> findMoviesWithDirector(String directorName) {
-		return moviePersonRepository.findMoviesWithDirector(directorName);
+		return movieDirectorRepository.findMoviesWithDirector(directorName);
 	}
 
 	@Override

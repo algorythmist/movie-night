@@ -27,8 +27,8 @@ public class PersonRepositoryTest {
 	
 	@Test
 	public void test() {
-		EntityPerson person1 = new EntityPerson("Tom", false, true);
-		EntityPerson person2 = new EntityPerson("Dale", true, true);
+		EntityPerson person1 = new EntityPerson("Tom");
+		EntityPerson person2 = new EntityPerson("Dale");
 
 		personRepository.save(person1);
 		assertTrue(person1.getId() > 0);

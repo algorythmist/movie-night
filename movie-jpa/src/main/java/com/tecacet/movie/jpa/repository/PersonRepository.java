@@ -11,9 +11,9 @@ public interface PersonRepository extends CrudRepository<EntityPerson, Long> {
 
 	List<EntityPerson> findAll();
 
-	@Query("from EntityPerson where actor is true")
+	@Query("select distinct mp.actor from MovieActor mp")
 	List<EntityPerson> findAllActors();
 	
-	@Query("from EntityPerson where director is true")
+	@Query("select distinct mp.director from MovieDirector mp")
 	List<EntityPerson> findAllDirectors();
 }

@@ -1,6 +1,5 @@
 package com.tecacet.movie.jpa.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,16 +17,10 @@ public class EntityPerson implements Person {
 	private long id;
 
 	private String name;
-	@Column(name = "actor")
-	private boolean isActor;
-	@Column(name = "director")
-	private boolean isDirector;
-
-	public EntityPerson(String name, boolean isActor, boolean isDirector) {
+	
+	public EntityPerson(String name) {
 		super();
 		this.name = name;
-		this.isActor = isActor;
-		this.isDirector = isDirector;
 	}
 
 	public long getId() {
@@ -37,24 +30,6 @@ public class EntityPerson implements Person {
 	@Override
 	public String getName() {
 		return name;
-	}
-
-	@Override
-	public boolean isActor() {
-		return isActor;
-	}
-
-	@Override
-	public boolean isDirector() {
-		return isDirector;
-	}
-
-	public void setActor(boolean isActor) {
-		this.isActor = isActor;
-	}
-
-	public void setDirector(boolean isDirector) {
-		this.isDirector = isDirector;
 	}
 
 	@Override
