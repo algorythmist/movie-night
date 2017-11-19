@@ -1,4 +1,4 @@
-- flyway in tests
+- jacoco in jap
 - REST client app
 - change movie-boot to use jpa
 - change movie-rest to use jpa
