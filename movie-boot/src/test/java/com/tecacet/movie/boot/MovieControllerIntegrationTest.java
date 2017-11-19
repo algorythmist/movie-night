@@ -23,7 +23,7 @@ public class MovieControllerIntegrationTest {
 	
 	@Test
 	public void getAllMovies() {
-		List<? extends Movie> movies = restTemplate.getForObject("/", List.class);
+		List<? extends Movie> movies = restTemplate.getForObject("/movies/list", List.class);
 		assertEquals(4609, movies.size());
 	}
 

@@ -1,2 +1,11 @@
+- Dynamic queries with criteria/spec
+- Validation 
+- CRUD endpoints
+- test vs dev database
+- AOP examples
+- REST client app
+- Monitoring with Java Console
+- Monitoring with Maven plugins
+- Mockito
 
 possible data source: https://github.com/theapache64/movie_db
