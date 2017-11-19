@@ -1,15 +1,14 @@
-- negative test
-- handle WS exceptions
-- CRUD endpoints
-- REST client app
-- change movie-rest to use jpa
 - Dynamic queries with criteria/spec
-- Validation 
 - AOP examples
-- Mock web service
+- negative tests
 - Monitoring with Java Console
 - Monitoring with Maven plugins
+- handle WS exceptions
 
+- Mock web service
+- change movie-rest to use jpa
+- complete REST client app
+- Validation 
 - Mockito
 - deploy to staging database
 - read-only repositories
