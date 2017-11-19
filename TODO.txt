@@ -1,4 +1,3 @@
-- jacoco in jap
 - REST client app
 - change movie-boot to use jpa
 - change movie-rest to use jpa
@@ -11,5 +10,6 @@
 - Monitoring with Java Console
 - Monitoring with Maven plugins
 - Mockito
+- read-only repositories
 
 possible data source: https://github.com/theapache64/movie_db
