@@ -10,7 +10,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import javax.transaction.Transactional;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ import com.tecacet.movie.service.MovieService;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { PersistanceConfiguration.class })
 @Transactional
-@Ignore
 public class RepositoryMovieServiceIntegrationTest {
 
 	@Autowired
@@ -39,7 +37,7 @@ public class RepositoryMovieServiceIntegrationTest {
 	
 	@Before
 	public void setUpDatabase() throws IOException {
-		if (loaded.compareAndSet(false, true)) {
+		if (!loaded.getAndSet(true)) {
 			databasePopulator.loadMovies();
 		}
 	}
@@ -48,6 +46,7 @@ public class RepositoryMovieServiceIntegrationTest {
 	public void getAllMovies() {
 		List<? extends Movie> movies = movieService.getAllMovies();
 		assertEquals(4609, movies.size());
+		System.out.println(movies.get(1).getActors());
 	}
 
 	@Test

@@ -1,18 +1,18 @@
 package com.tecacet.movie.jpa.service;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Person;
 import com.tecacet.movie.jpa.model.EntityGenre;
+import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.model.EntityPerson;
 import com.tecacet.movie.jpa.repository.GenreRepository;
 import com.tecacet.movie.jpa.repository.MovieRepository;
@@ -40,27 +40,48 @@ public class DatabasePopulator {
 
 	public void loadMovies() throws IOException {
 		List<JsonMovie> movies = movieParser.parse("moviedata.json");
-		Set<EntityGenre> genres = getGenres(movies);
-		genreRepository.saveAll(genres);
-		Collection<EntityPerson> people = getPeople(movies);
-		personRepository.saveAll(people);
-		// List<EntityMovie> entities = movies.stream().map(movie -> toMovie(movie,
-		// people, genres)).collect(Collectors.toList());
-		// movieRepository.saveAll(entities);
+		Map<String, EntityGenre> genres = getGenres(movies);
+		genreRepository.saveAll(genres.values());
+		Map<String, EntityPerson> people = getPeople(movies);
+		personRepository.saveAll(people.values());
+		List<EntityMovie> entities = movies.stream().map(movie -> toEntity(movie, genres, people))
+				.collect(Collectors.toList());
+		movieRepository.saveAll(entities);
 	}
 
-	
-
-	private Set<EntityGenre> getGenres(List<JsonMovie> movies) {
-		return movies.stream().map(m -> m.getGenres()).flatMap(gl -> gl.stream()).map(g -> new EntityGenre(g.getName()))
-				.collect(Collectors.toSet());
+	private EntityMovie toEntity(JsonMovie movie, Map<String, EntityGenre> genres, Map<String, EntityPerson> people) {
+		EntityMovie entityMovie = new EntityMovie(movie);
+		for (Genre genre : movie.getGenres()) {
+			EntityGenre entityGenre = genres.get(genre.getName());
+			if (entityGenre != null) {
+				entityMovie.addGenre(entityGenre);
+			}
+		}
+		for (Person actor : movie.getActors()) {
+			EntityPerson person = people.get(actor.getName());
+			if (person != null) {
+				entityMovie.addActor(person);
+			}
+		}
+		for (Person director : movie.getDirectors()) {
+			EntityPerson person = people.get(director.getName());
+			if (person != null) {
+				entityMovie.addDirector(person);
+			}
+		}
+		return entityMovie;
 	}
 
-	private Collection<EntityPerson> getPeople(List<JsonMovie> movies) {
+	private Map<String, EntityGenre> getGenres(List<JsonMovie> movies) {
+		return movies.stream().map(m -> m.getGenres()).flatMap(gl -> gl.stream()).map(g -> g.getName()).distinct()
+				.map(g -> new EntityGenre(g)).collect(Collectors.toMap(e -> e.getName(), e -> e));
+	}
+
+	private Map<String, EntityPerson> getPeople(List<JsonMovie> movies) {
 		Map<String, EntityPerson> people = new HashMap<>();
 		for (JsonMovie movie : movies) {
 			for (Person actor : movie.getActors()) {
-				EntityPerson person = people.get(actor);
+				EntityPerson person = people.get(actor.getName());
 				if (person == null) {
 					person = new EntityPerson(actor.getName());
 					people.put(actor.getName(), person);
@@ -68,14 +89,14 @@ public class DatabasePopulator {
 
 			}
 			for (Person director : movie.getDirectors()) {
-				EntityPerson person = people.get(director);
+				EntityPerson person = people.get(director.getName());
 				if (person == null) {
 					person = new EntityPerson(director.getName());
 					people.put(director.getName(), person);
 				}
 			}
 		}
-		return people.values();
+		return people;
 	}
 
 }

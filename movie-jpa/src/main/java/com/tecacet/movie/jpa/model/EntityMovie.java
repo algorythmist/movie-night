@@ -49,6 +49,16 @@ public class EntityMovie implements Movie {
 		super();
 		this.title = title;
 	}
+	
+	public EntityMovie(Movie movie) {
+		this(movie.getTitle());
+		this.year = movie.getYear();
+		this.duration = movie.getDuration();
+		this.releaseDate = movie.getReleaseDate();
+		this.plot = movie.getPlot();
+		this.rating = movie.getRating().orElse(null);
+		this.imageUrl = movie.getImageUrl();
+	}
 
 	public long getId() {
 		return id;
@@ -149,7 +159,8 @@ public class EntityMovie implements Movie {
 	
 	@Override
 	public String toString() {
-		return getTitle();
+		String rating = getRating().isPresent() ? getRating().get().toString() : "No rating";
+		return String.format("%s (%d): %s", getTitle(), getYear(), rating);
 	}
 
 }
