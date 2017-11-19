@@ -27,7 +27,7 @@ public class PersistanceConfiguration {
 	@Bean(destroyMethod = "close")
 	public HikariDataSource dataSource() {
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setJdbcUrl("jdbc:h2:file:./movies");
+		hikariConfig.setJdbcUrl("jdbc:h2:file:./movies;MODE=PostgreSQL");
 		hikariConfig.setUsername("sa");
 		hikariConfig.setPassword("");
 		hikariConfig.setDriverClassName("org.h2.Driver");

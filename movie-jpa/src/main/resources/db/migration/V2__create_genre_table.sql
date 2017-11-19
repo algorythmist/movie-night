@@ -1,14 +1,12 @@
 create table genre (
-    id int not null auto_increment,
-    name varchar(255) not null,
-    PRIMARY KEY(id)
+    id serial primary key,
+    name varchar(255) not null
 );
 
-create index genre_name_idx on genre(name);
+create unique index genre_name_ux on genre(name);
 
 create table movie_genre (
-	id int not null auto_increment,
-	movie_id int not null,
-    genre_id int not null,
-    PRIMARY KEY(id)
+	id serial primary key,
+	movie_id int not null REFERENCES movie(id),
+    genre_id int not null REFERENCES genre(id)
 );
