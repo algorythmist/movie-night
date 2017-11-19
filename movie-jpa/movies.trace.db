@@ -1,6 +1,0 @@
-2017-11-15 16:39:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "PERSON" not found; SQL statement:
-insert into person (id, actor, director, name) values (null, ?, ?, ?) [42102-196]
-2017-11-15 16:39:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "PERSON" not found; SQL statement:
-insert into person (id, actor, director, name) values (null, ?, ?, ?) [42102-196]
