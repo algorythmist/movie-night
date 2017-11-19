@@ -28,13 +28,17 @@ public class GenreRepositoryTest {
 	@Test
 	public void crudOperations() {
 
-		EntityGenre genre = new EntityGenre("Exreme Action");
+		String genreName = "Extreme Action";
+		EntityGenre genre = new EntityGenre(genreName);
 
 		genreRepository.save(genre);
 		assertTrue(genre.getId() > 0);
 
 		Optional<EntityGenre> found = genreRepository.findById(genre.getId());
-		assertEquals("Exreme Action", found.get().getName());
+		assertEquals(genreName, found.get().getName());
+		
+		found = genreRepository.findByNameIgnoreCase("extreme action");
+		assertEquals(genreName, found.get().getName());
 
 		List<EntityGenre> allGenres = genreRepository.findAll();
 		assertEquals(1, allGenres.size());

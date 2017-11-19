@@ -1,4 +1,5 @@
-- endpoint to populate database
+- negative test
+- handle WS exceptions
 - CRUD endpoints
 - REST client app
 - change movie-rest to use jpa

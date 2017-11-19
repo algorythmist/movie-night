@@ -14,6 +14,15 @@ import com.tecacet.movie.boot.service.MovieFacade;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.jpa.service.DatabasePopulator;
 
+//TODO create movie
+//TODO delete movie
+//TODO findMovies where name like
+//TODO findMovies with actor name like
+//TODO findMovies with director name like
+//TODO find movies for director
+//TODO find movies for actor
+
+
 @RestController
 @RequestMapping(value = "/movies")
 public class MovieController {

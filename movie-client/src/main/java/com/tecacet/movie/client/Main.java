@@ -7,7 +7,7 @@ import com.tecacet.movie.client.model.Movie;
 public class Main {
 	
 	private static final String LIST_URL = "http://localhost:8080/movies/list";
-	private static String GET_MOVIE_BY_ID = "http://localhost:8080/movies/{id}";		
+	private static final String GET_MOVIE_BY_ID = "http://localhost:8080/movies/{id}";		
 	
 	public static void main(String[] args) {
 		RestTemplate restTemplate = new RestTemplate();
