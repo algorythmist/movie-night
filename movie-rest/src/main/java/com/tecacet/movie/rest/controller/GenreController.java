@@ -1,4 +1,4 @@
-package com.tecacet.movie.boot;
+package com.tecacet.movie.rest.controller;
 
 import java.util.List;
 

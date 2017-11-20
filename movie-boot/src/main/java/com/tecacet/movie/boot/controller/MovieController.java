@@ -1,4 +1,4 @@
-package com.tecacet.movie.boot;
+package com.tecacet.movie.boot.controller;
 
 import java.io.IOException;
 import java.util.List;
