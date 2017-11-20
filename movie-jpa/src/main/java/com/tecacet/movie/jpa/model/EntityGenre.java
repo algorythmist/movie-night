@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.tecacet.movie.domain.Genre;
 
@@ -16,6 +17,7 @@ public class EntityGenre implements Genre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotNull
 	private String name;
 
 	//for HB

@@ -13,10 +13,11 @@
 
 	<properties>
 		<movie.version>0.0.1-SNAPSHOT</movie.version>
-		
+
 		<spring-data.version>2.0.1.RELEASE</spring-data.version>
 		<hikaricp.version>2.7.2</hikaricp.version>
 		<hibernate.version>5.2.12.Final</hibernate.version>
+		<hibernate-validator.version>6.0.5.Final</hibernate-validator.version>
 		<postgres.version>42.1.4</postgres.version>
 		<h2.version>1.4.196</h2.version>
 		<jacoco.coverage.lines>0.90</jacoco.coverage.lines>
@@ -43,6 +44,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zaxxer</groupId>
