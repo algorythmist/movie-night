@@ -3,14 +3,15 @@
 - Monitoring with Maven plugins
 - handle WS exceptions
 - better AOP example
+- Validation
 - negative tests
 
 - Mock web service
-- change movie-rest to use jpa
 - complete REST client app
-- Validation 
+- movie-rest to cleanup 
 - Mockito
 - deploy to staging database
 - read-only repositories
+
 
 possible data source: https://github.com/theapache64/movie_db
