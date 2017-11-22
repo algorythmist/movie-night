@@ -4,7 +4,7 @@ import java.util.Set;
 
 import com.tecacet.movie.domain.Director;
 
-public class ImmutableDirector implements Director {
+class ImmutableDirector implements Director {
 
 	private final String name;
 	private final double rating;

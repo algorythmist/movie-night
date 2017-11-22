@@ -1,4 +1,3 @@
-- Dynamic queries with criteria/spec
 - LazyInitException example
 - Monitoring with Java Console
 - Monitoring with Maven plugins
@@ -7,6 +6,7 @@
 - Validation
 - negative tests
 
+- Dynamic queries with criteria/spec
 - prometheus metrics
 - Mock web service for testing client
 - complete REST client app
