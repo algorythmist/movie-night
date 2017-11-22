@@ -35,7 +35,7 @@ public class ExhaustiveDirectorRatingService implements DirectorRatingService {
 
 	public List<ImmutableDirector> findTopDirectors(int top) {
 		Comparator<ImmutableDirector> ratingComparator = Comparator.comparing(ImmutableDirector::getRating).reversed();
-		Comparator<Director> movieComparator = Comparator.comparing(d -> d.getMovies().size());
+		Comparator<Director> movieComparator = Comparator.comparing(d -> d.getMovies());
 		Queue<ImmutableDirector> priorityQueue = new PriorityQueue<>(ratingComparator.thenComparing(movieComparator.reversed()));
 		List<? extends Person> allDirectors = movieService.getAllDirectors();
 		logger.info("Comparing {} directors", allDirectors.size());
@@ -49,7 +49,7 @@ public class ExhaustiveDirectorRatingService implements DirectorRatingService {
 				continue;
 			}
 			Set<String> genres = getGenres(movies);
-			ImmutableDirector director = new ImmutableDirector(person.getName(), opt.getAsDouble(), movies, genres);
+			ImmutableDirector director = new ImmutableDirector(person.getName(), opt.getAsDouble(), movies.size(), genres);
 			priorityQueue.add(director);
 		}
 		return toList(priorityQueue, top);

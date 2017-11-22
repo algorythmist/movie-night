@@ -1,6 +1,5 @@
 package com.tecacet.movie.domain;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,6 +16,6 @@ public interface Director {
 
 	Set<String> getGenres();
 
-	List<? extends Movie> getMovies();
+	int getMovies();
 
 }

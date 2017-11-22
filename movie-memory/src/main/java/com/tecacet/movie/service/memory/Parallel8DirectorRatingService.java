@@ -33,7 +33,7 @@ public class Parallel8DirectorRatingService implements DirectorRatingService {
 		List<? extends Person> allDirectors = movieService.getAllDirectors();
 		logger.info("Comparing {} directors", allDirectors.size());
 		Comparator<ImmutableDirector> ratingComparator = Comparator.comparing(ImmutableDirector::getRating).reversed();
-		Comparator<Director> movieComparator = Comparator.comparing(d -> d.getMovies().size());
+		Comparator<Director> movieComparator = Comparator.comparing(d -> d.getMovies());
 		Queue<ImmutableDirector> priorityQueue = new PriorityBlockingQueue<>(movieService.getAllDirectors().size(),
 				ratingComparator.thenComparing(movieComparator.reversed()));
 
@@ -52,7 +52,7 @@ public class Parallel8DirectorRatingService implements DirectorRatingService {
 			return Optional.empty();
 		}
 		Set<String> genres = getGenres(movies);
-		return Optional.of(new ImmutableDirector(person.getName(), opt.getAsDouble(), movies, genres));
+		return Optional.of(new ImmutableDirector(person.getName(), opt.getAsDouble(), movies.size(), genres));
 	}
 
 	private List<ImmutableDirector> toList(Queue<ImmutableDirector> directors, int size) {

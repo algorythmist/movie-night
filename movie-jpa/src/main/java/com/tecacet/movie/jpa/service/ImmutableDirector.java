@@ -1,7 +1,6 @@
-package com.tecacet.movie.service.spring;
+package com.tecacet.movie.jpa.service;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 import com.tecacet.movie.domain.Director;
 
@@ -12,12 +11,12 @@ public class ImmutableDirector implements Director {
 	private final int movies;
 	private final Set<String> genres;
 
-	public ImmutableDirector(String name, double rating, int movies, Set<String> genres) {
+	public ImmutableDirector(String name, double rating, long movies) {
 		super();
 		this.name = name;
 		this.rating = Math.round(rating * 100) / 100.;
-		this.movies = movies;
-		this.genres = new TreeSet<>(genres);
+		this.movies = (int)movies;
+		this.genres = null; //TODO
 	}
 
 	@Override

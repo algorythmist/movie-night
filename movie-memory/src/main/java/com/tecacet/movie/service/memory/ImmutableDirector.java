@@ -1,20 +1,18 @@
 package com.tecacet.movie.service.memory;
 
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import com.tecacet.movie.domain.Director;
-import com.tecacet.movie.domain.Movie;
 
 public class ImmutableDirector implements Director {
 
 	private final String name;
 	private final double rating;
-	private final List<? extends Movie> movies;
+	private final int movies;
 	private final Set<String> genres;
 
-	public ImmutableDirector(String name, double rating, List<? extends Movie> movies, Set<String> genres) {
+	public ImmutableDirector(String name, double rating, int movies, Set<String> genres) {
 		super();
 		this.name = name;
 		this.rating = Math.round(rating * 100) / 100.;
@@ -38,7 +36,7 @@ public class ImmutableDirector implements Director {
 	}
 
 	@Override
-	public List<? extends Movie> getMovies() {
+	public int getMovies() {
 		return movies;
 	}
 
@@ -62,6 +60,6 @@ public class ImmutableDirector implements Director {
 	@Override
 	public String toString() {
 		return String.format("%s: Rating = %.2f. Movies = %d. Genres = %s", getName(), getRating(),
-				getMovies().size(), getGenres());
+				getMovies(), getGenres());
 	}
 }

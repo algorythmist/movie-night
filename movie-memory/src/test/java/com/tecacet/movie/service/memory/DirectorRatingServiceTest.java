@@ -57,7 +57,7 @@ public class DirectorRatingServiceTest {
 		Director director = directors.get(0);
 		assertEquals("Charles Chaplin", director.getName());
 		assertEquals(8.50, director.getRating(), 0.01);
-		assertEquals(4, director.getMovies().size());
+		assertEquals(4, director.getMovies());
 		assertEquals("[Comedy, Drama, Family, Romance, War]", director.getGenres().toString());
 		
 	}

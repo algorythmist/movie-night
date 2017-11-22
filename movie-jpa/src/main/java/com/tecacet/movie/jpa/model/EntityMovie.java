@@ -93,6 +93,10 @@ public class EntityMovie implements Movie {
 	public int getDuration() {
 		return duration;
 	}
+	
+	public Double getScore() {
+		return rating;
+	}
 
 	@Override
 	public Optional<Double> getRating() {
