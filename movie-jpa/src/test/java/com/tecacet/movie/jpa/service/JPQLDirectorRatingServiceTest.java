@@ -22,10 +22,10 @@ import com.tecacet.movie.jpa.config.PersistenceConfiguration;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { PersistenceConfiguration.class })
 @Transactional
-public class NativeDirectorRatingServiceTest {
+public class JPQLDirectorRatingServiceTest {
 
 	@Autowired
-	private NativeDirectorRatingService directorRatingService;
+	private JPQLDirectorRatingService directorRatingService;
 
 	@Autowired
 	private DatabasePopulator databasePopulator;
