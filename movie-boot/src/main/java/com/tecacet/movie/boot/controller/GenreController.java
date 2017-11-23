@@ -37,13 +37,13 @@ public class GenreController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Genre findGenreById(@PathVariable long id) {
-		return genreRepository.findById(id).orElse(null);
+	public Genre findGenreById(@PathVariable long id) throws ResourceNotFoundException {
+		return genreRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	@RequestMapping(value = "/byname/{name}", method = RequestMethod.GET)
-	public Genre findGenreByName(@PathVariable String name) {
-		return genreRepository.findByNameIgnoreCase(name).orElse(null);
+	public Genre findGenreByName(@PathVariable String name) throws ResourceNotFoundException {
+		return genreRepository.findByNameIgnoreCase(name).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

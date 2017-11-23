@@ -23,12 +23,17 @@ public class DatabaseController {
 
 	/**
 	 * TODO hande exception
+	 * @throws MovieServiceException 
 	 * 
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/populate", method = RequestMethod.POST)
-	public void populateData() throws IOException {
-		databasePopulator.loadMovies();
+	public void populateData() throws MovieServiceException {
+		try {
+			databasePopulator.loadMovies();
+		} catch (Exception e) {
+			throw new MovieServiceException(e);
+		}
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
