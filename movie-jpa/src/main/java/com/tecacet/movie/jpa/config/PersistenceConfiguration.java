@@ -1,5 +1,7 @@
 package com.tecacet.movie.jpa.config;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -59,10 +61,19 @@ public class PersistenceConfiguration {
 		hikariConfig.setDriverClassName(driver);
 		hikariConfig.setMaximumPoolSize(10);
 		//leak detection
-		hikariConfig.setPoolName("Twisting by the Pool");
+		hikariConfig.setPoolName("Twisting by the pool");
 		hikariConfig.setLeakDetectionThreshold(3000);
-		hikariConfig.setRegisterMbeans(true);
 		return new HikariDataSource(hikariConfig);
+	}
+	
+	@Bean
+	public Properties hibernateProperties() {
+		Properties hibernateProp = new Properties();
+		hibernateProp.put("hibernate.show_sql", true);
+		hibernateProp.put("hibernate.jmx.enabled", true);
+		hibernateProp.put("hibernate.generate_statistics", true);
+		hibernateProp.put("hibernate.session_factory_name", "sessionFactory");
+		return hibernateProp;
 	}
 
 	/**
@@ -80,6 +91,7 @@ public class PersistenceConfiguration {
 		entityManagerFactoryBean.setDataSource(dataSource);
 		entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		entityManagerFactoryBean.setPackagesToScan(ENTITY_PACKAGES);
+		entityManagerFactoryBean.setJpaProperties(hibernateProperties());
 		return entityManagerFactoryBean;
 	}
 
