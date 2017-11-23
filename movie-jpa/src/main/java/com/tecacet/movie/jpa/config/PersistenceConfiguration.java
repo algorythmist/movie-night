@@ -57,6 +57,11 @@ public class PersistenceConfiguration {
 		hikariConfig.setUsername(username);
 		hikariConfig.setPassword(password);
 		hikariConfig.setDriverClassName(driver);
+		hikariConfig.setMaximumPoolSize(10);
+		//leak detection
+		hikariConfig.setPoolName("Twisting by the Pool");
+		hikariConfig.setLeakDetectionThreshold(3000);
+		hikariConfig.setRegisterMbeans(true);
 		return new HikariDataSource(hikariConfig);
 	}
 

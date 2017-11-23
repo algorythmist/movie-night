@@ -3,13 +3,23 @@ package com.tecacet.movie.boot.aspect;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+/**
+ * Log the time a method took to execute
+ * 
+ * @author dimitri
+ *
+ */
 @Aspect
 @Component
 public class LoggingAspect {
 
+	private final Logger logger = LoggerFactory.getLogger("TIMING");
+	
 	@Around("within(com.tecacet.movie.jpa..*)")
 	public Object logActivity(ProceedingJoinPoint joinPoint) throws Throwable {
 		StopWatch stopWatch = new StopWatch();
@@ -18,7 +28,7 @@ public class LoggingAspect {
 		stopWatch.stop();
 		long msecs = stopWatch.getTotalTimeMillis();
 		String method = joinPoint.getSignature().toShortString();
-		System.err.println(String.format("Method %s took %d milliseconds", method, msecs));
+		logger.info("Method {} took {} milliseconds", method, msecs);
 		return returnValue;
 	}
 }

@@ -4,8 +4,9 @@
 - Monitoring with Java Console
 - Monitoring with Maven plugins
 - better AOP example
-- Validation
+- Spring integration metrics
 - negative tests
+
 
 - Dynamic queries with criteria/spec
 - prometheus metrics
