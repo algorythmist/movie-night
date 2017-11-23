@@ -41,6 +41,7 @@ public class MovieGenreRepositoryTest {
 		EntityMovie movie1 = new EntityMovie("Elegance");
 		EntityMovie movie2 = new EntityMovie("Remorse");
 		EntityMovie movie3 = new EntityMovie("Passion");
+		
 		movie1.addGenre(genre1);
 		movie1.addGenre(genre2);
 		movie2.addGenre(genre2);

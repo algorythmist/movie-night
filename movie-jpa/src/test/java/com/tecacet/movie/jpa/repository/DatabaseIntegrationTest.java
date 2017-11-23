@@ -39,6 +39,7 @@ public class DatabaseIntegrationTest {
 		
 		EntityMovie movie = new EntityMovie("Elegance");
 		movie.setDuration(189);
+		movie.setYear(2001);
 		movie.setReleaseDate(LocalDate.of(2012, 3, 4));
 		movie.addGenre(action);
 		movie.addGenre(comedy);

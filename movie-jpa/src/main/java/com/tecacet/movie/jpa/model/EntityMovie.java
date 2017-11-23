@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
@@ -25,8 +29,12 @@ public class EntityMovie implements Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotEmpty
 	private String title;
+	@Min(1900)
+	@Max(2018)
 	private int year;
+	@Past
 	private LocalDate releaseDate;
 	private String plot;
 	private int duration;
@@ -54,6 +62,7 @@ public class EntityMovie implements Movie {
 	public EntityMovie(String title) {
 		super();
 		this.title = title;
+		this.year = 2000;
 	}
 	
 	public EntityMovie(Movie movie) {

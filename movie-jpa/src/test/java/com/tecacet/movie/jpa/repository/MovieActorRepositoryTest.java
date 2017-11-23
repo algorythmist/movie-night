@@ -35,7 +35,9 @@ public class MovieActorRepositoryTest {
 	@Test
 	public void findMoviesWithActor() {
 		EntityMovie movie1 = new EntityMovie("Elegance");
+		movie1.setYear(2001);
 		EntityMovie movie2 = new EntityMovie("Remorse");
+		movie2.setYear(2010);
 		movieRepository.saveAll(Arrays.asList(movie1, movie2));
 
 		EntityPerson person1 = new EntityPerson("Tom");
