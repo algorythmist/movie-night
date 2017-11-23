@@ -1,8 +1,8 @@
+- mem leaks https://www.toptal.com/java/hunting-memory-leaks-in-java
 - Swagger http://localhost:8080/swagger-ui.html
 - LazyInitException example
 - Monitoring with Java Console
 - Monitoring with Maven plugins
-- handle WS exceptions
 - better AOP example
 - Validation
 - negative tests
