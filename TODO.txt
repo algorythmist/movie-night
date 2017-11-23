@@ -7,6 +7,7 @@
 - negative tests
 
 - Dynamic queries with criteria/spec
+- HAL browser
 - prometheus metrics
 - Mock web service for testing client
 - complete REST client app

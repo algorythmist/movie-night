@@ -46,7 +46,6 @@ public class RepositoryMovieServiceIntegrationTest {
 	public void getAllMovies() {
 		List<? extends Movie> movies = movieService.getAllMovies();
 		assertEquals(4609, movies.size());
-		System.out.println(movies.get(1).getActors());
 	}
 
 	@Test
