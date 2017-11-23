@@ -48,6 +48,12 @@ public class DatabasePopulator {
 				.collect(Collectors.toList());
 		movieRepository.saveAll(entities);
 	}
+	
+	public void deleteData() {
+		movieRepository.deleteAll();
+		personRepository.deleteAll();
+		genreRepository.deleteAll();
+	}
 
 	private EntityMovie toEntity(JsonMovie movie, Map<String, EntityGenre> genres, Map<String, EntityPerson> people) {
 		EntityMovie entityMovie = new EntityMovie(movie);
