@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.tecacet.movie.jpa.model.EntityGenre;
@@ -39,26 +41,40 @@ public class GenreControllerIntegrationTest {
 	}
 
 	@Test
-	public void test() {
+	public void crud() {
+		//create
 		EntityGenre genre = restTemplate.postForObject(CREATE_URL, "Test1", EntityGenre.class);
 		assertEquals("Test1", genre.getName());
 
+		//find by name
 		Map<String, String> params = new HashMap<>();
 		params.put("name", "test1");
 		EntityGenre found = restTemplate.getForObject(BY_NAME_URL, EntityGenre.class, params);
 		assertEquals("Test1", found.getName());
 		
+		//create another one
 		restTemplate.postForObject(CREATE_URL, "Test2", EntityGenre.class);
 		
 		List<EntityGenre> genres = restTemplate.getForObject(LIST_URL, List.class);
-		System.out.println(genres);
 		assertEquals(2, genres.size());
+		
+		params = new HashMap<>();
+		params.put("id", Long.toString(found.getId()));
+		EntityGenre byId = restTemplate.getForObject(BY_ID_URL, EntityGenre.class, params);
+		assertEquals("Test1", byId.getName());
+		
 
 		restTemplate.delete(BY_ID_URL, genre.getId());
 		
 		genres = restTemplate.getForObject(LIST_URL, List.class);
-		System.out.println(genres);
 		assertEquals(1, genres.size());
 	}
 
+	@Test
+	public void missingResource() {
+		Map<String, String> params = new HashMap<>();
+		params.put("name", "test2");
+		ResponseEntity<EntityGenre> response = restTemplate.getForEntity(BY_NAME_URL, EntityGenre.class, params);
+		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+	}
 }

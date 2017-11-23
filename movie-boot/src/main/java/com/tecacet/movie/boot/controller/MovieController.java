@@ -1,17 +1,20 @@
 package com.tecacet.movie.boot.controller;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tecacet.movie.boot.domain.SimpleMovie;
 import com.tecacet.movie.boot.service.MovieFacade;
 import com.tecacet.movie.domain.Movie;
+import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.service.DatabasePopulator;
 
 //TODO create movie
@@ -22,19 +25,16 @@ import com.tecacet.movie.jpa.service.DatabasePopulator;
 //TODO find movies for director
 //TODO find movies for actor
 
-
 @RestController
 @RequestMapping(value = "/movies")
 public class MovieController {
 
 	private final MovieFacade movieFacade;
-	private final DatabasePopulator databasePopulator;
 
 	@Autowired
 	public MovieController(MovieFacade movieFacade, DatabasePopulator databasePopulator) {
 		super();
 		this.movieFacade = movieFacade;
-		this.databasePopulator = databasePopulator;
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -48,14 +48,20 @@ public class MovieController {
 		return optional.orElse(null);
 	}
 
-	/**
-	 * TODO hande exception
-	 * 
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "/populate", method = RequestMethod.POST)
-	public void populateDatabase() throws IOException {
-		databasePopulator.loadMovies();
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public Movie modify(@PathVariable long id, @RequestBody SimpleMovie movie) throws ResourceNotFoundException {
+		EntityMovie entityMovie = movieFacade.findMovieById(id).orElseThrow(() -> new ResourceNotFoundException());
+		// copy attributes
+		BeanUtils.copyProperties(movie, entityMovie);
+		movieFacade.save(entityMovie);
+		return entityMovie;
+	}
+
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public Movie create(@RequestBody SimpleMovie movie) {
+		EntityMovie entityMovie = new EntityMovie(movie);
+		movieFacade.save(entityMovie);
+		return entityMovie;
 	}
 
 }

@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tecacet.movie.domain.Movie;
+import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.repository.MovieRepository;
 
 @Service
@@ -20,11 +20,15 @@ public class MovieFacade {
 		this.movieRepository = movieRepository;
 	}
 	
-	public List<? extends Movie> findAll() {
+	public List<EntityMovie> findAll() {
 		return movieRepository.findAll();
 	}
 	
-	public Optional<? extends Movie> findMovieById(Long id) {
+	public Optional<EntityMovie> findMovieById(Long id) {
 		return movieRepository.findById(id);
+	}
+	
+	public void save(EntityMovie movie) {
+		movieRepository.save(movie);
 	}
 }
