@@ -11,6 +11,7 @@ import com.tecacet.movie.domain.Person;
 
 public class SimpleMovie implements Movie {
 
+	private long id;
 	private String title;
 	private int year;
 	private LocalDate releaseDate;

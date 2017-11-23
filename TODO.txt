@@ -1,3 +1,4 @@
+- Swagger http://localhost:8080/swagger-ui.html
 - LazyInitException example
 - Monitoring with Java Console
 - Monitoring with Maven plugins
@@ -9,12 +10,12 @@
 - Dynamic queries with criteria/spec
 - HAL browser
 - prometheus metrics
+- Spring Boot actuators
 - Mock web service for testing client
 - complete REST client app
-- movie-rest to cleanup 
+- movie-rest cleanup 
 - Mockito
 - deploy to staging database
-- Native SQL queries
 - logging queries
 - read-only repositories
 
