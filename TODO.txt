@@ -1,12 +1,8 @@
-- mem leaks https://www.toptal.com/java/hunting-memory-leaks-in-java
-- Swagger http://localhost:8080/swagger-ui.html
+- better AOP/JMX example
 - LazyInitException example
-- Monitoring with Java Console
 - Monitoring with Maven plugins
-- better AOP example
 - Spring integration metrics
 - negative tests
-
 
 - Dynamic queries with criteria/spec
 - prometheus metrics
