@@ -62,17 +62,17 @@ public class PersistenceConfiguration {
 		hikariConfig.setMaximumPoolSize(10);
 		//leak detection
 		hikariConfig.setPoolName("Twisting by the pool");
-		hikariConfig.setLeakDetectionThreshold(3000);
+		hikariConfig.setLeakDetectionThreshold(30000);
 		return new HikariDataSource(hikariConfig);
 	}
 	
 	@Bean
 	public Properties hibernateProperties() {
 		Properties hibernateProp = new Properties();
-		hibernateProp.put("hibernate.show_sql", true);
-		hibernateProp.put("hibernate.jmx.enabled", true);
-		hibernateProp.put("hibernate.generate_statistics", true);
-		hibernateProp.put("hibernate.session_factory_name", "sessionFactory");
+		//hibernateProp.put("hibernate.show_sql", true);
+		//hibernateProp.put("hibernate.jmx.enabled", true);
+		//TODO hibernateProp.put("hibernate.generate_statistics", true);
+		//hibernateProp.put("hibernate.session_factory_name", "sessionFactory");
 		return hibernateProp;
 	}
 

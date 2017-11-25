@@ -21,24 +21,30 @@ public class DatabasePopulatorTest {
 
 	@Autowired
 	private DatabasePopulator databasePopulator;
-	
+
 	@Autowired
 	private MovieRepository movieRepository;
-	
+
 	@Autowired
 	private GenreRepository genreRepository;
-	
+
 	@Autowired
 	private PersonRepository personRepository;
-	
+
 	@Test
 	public void test() throws IOException {
+		long startTime = System.currentTimeMillis();
 		databasePopulator.loadMovies();
+		long duration = System.currentTimeMillis() - startTime;
+		System.out.println("Time to populate = " + duration);
 		assertEquals(4609, movieRepository.count());
 		assertEquals(7426, personRepository.count());
 		assertEquals(24, genreRepository.count());
-		
+
+		startTime = System.currentTimeMillis();
 		databasePopulator.deleteData();
+		duration = System.currentTimeMillis() - startTime;
+		System.out.println("Time to delete = " + duration);
 		assertEquals(0, movieRepository.count());
 		assertEquals(0, personRepository.count());
 		assertEquals(0, genreRepository.count());

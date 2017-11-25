@@ -1,9 +1,21 @@
+Code
 - better AOP/JMX example
 - LazyInitException example
 - Monitoring with Maven plugins
 - Spring integration metrics
 - negative tests
+- fast delete
 
+Presentation
+- Cover slide
+- Who Am I
+- Dependency graph
+- HB stats
+- Flyway auto-migrate
+- Hibernate properties
+
+Maybe
+- Auditing
 - Dynamic queries with criteria/spec
 - prometheus metrics
 - Spring Boot actuators
