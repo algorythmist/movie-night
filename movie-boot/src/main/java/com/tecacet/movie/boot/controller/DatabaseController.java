@@ -22,7 +22,7 @@ public class DatabaseController {
 	}
 
 	/**
-	 * TODO hande exception
+	 * Populate the movie database from a JSON file
 	 * @throws MovieServiceException 
 	 * 
 	 * @throws IOException
@@ -35,7 +35,10 @@ public class DatabaseController {
 			throw new MovieServiceException(e);
 		}
 	}
-
+	
+	/**
+	 * Delete all the data in the movie database
+	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void deleteData() {
 		databasePopulator.deleteData();
