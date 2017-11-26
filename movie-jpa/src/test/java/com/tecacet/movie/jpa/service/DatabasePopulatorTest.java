@@ -40,9 +40,9 @@ public class DatabasePopulatorTest {
 		databasePopulator.loadMovies();
 		long duration = System.currentTimeMillis() - startTime;
 		System.out.println("Time to populate = " + duration);
-		assertEquals(4609, movieRepository.count());
-		assertEquals(7426, personRepository.count());
-		assertEquals(24, genreRepository.count());
+		assertEquals(442, movieRepository.count());
+		assertEquals(1135, personRepository.count());
+		assertEquals(21, genreRepository.count());
 
 		startTime = System.currentTimeMillis();
 		databasePopulator.deleteData();

@@ -42,8 +42,8 @@ public class NativeDirectorRatingServiceTest {
 	@Test
 	public void testFindTopDirectors() {
 		List<? extends Director> directors = directorRatingService.findTopDirectors(5);
-		System.out.println(directors);
-
+		assertEquals(5, directors.size());
+		
 		// Test that directors are in the correct order
 		double lastRating = directors.get(0).getRating();
 		for (int i = 1; i < 5; i++) {
@@ -53,9 +53,9 @@ public class NativeDirectorRatingServiceTest {
 		}
 
 		Director director = directors.get(0);
-		assertEquals("Charles Chaplin", director.getName());
-		assertEquals(8.50, director.getRating(), 0.01);
-		assertEquals(4, director.getMovies());
+		assertEquals("Christopher Nolan", director.getName());
+		assertEquals(8.62, director.getRating(), 0.01);
+		assertEquals(6, director.getMovies());
 	}
 
 }

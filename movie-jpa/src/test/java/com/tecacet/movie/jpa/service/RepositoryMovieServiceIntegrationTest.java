@@ -45,49 +45,44 @@ public class RepositoryMovieServiceIntegrationTest {
 	@Test
 	public void getAllMovies() {
 		List<? extends Movie> movies = movieService.getAllMovies();
-		assertEquals(4609, movies.size());
+		assertEquals(442, movies.size());
 	}
 
 	@Test
 	public void getAllGenres() {
 		List<? extends Genre> genres = movieService.getAllGenres();
-		assertEquals(24, genres.size());
+		assertEquals(21, genres.size());
 	}
 
 	@Test
 	public void getAllActors() {
 		List<? extends Person> actors = movieService.getAllActors();
-		assertEquals(5265, actors.size());
+		assertEquals(795, actors.size());
 	}
 
 	@Test
 	public void getAllDirectors() {
 		List<? extends Person> directors = movieService.getAllDirectors();
-		assertEquals(2333, directors.size());
+		assertEquals(353, directors.size());
 
 	}
 
 	@Test
 	public void findMoviesWithActor() throws IOException {
-		List<? extends Movie> actorMovies = movieService.findMoviesWithActor("Laurence Olivier");
-		assertEquals(6, actorMovies.size());
-		assertEquals(
-				"[Spartacus (1960): 8.0, Clash of the Titans (1981): 6.7, Rebecca (1940): 8.3, The Bounty (1984): 6.9, Marathon Man (1976): 7.5, The Prince and the Showgirl (1957): 6.5]",
-				actorMovies.toString());
+		List<? extends Movie> actorMovies = movieService.findMoviesWithActor("Will Smith");
+		assertEquals(3, actorMovies.size());
 	}
 
 	@Test
 	public void findMoviesWithDirector() {
 		List<? extends Movie> movies = movieService.findMoviesWithDirector("Ron Howard");
-		assertEquals(20, movies.size());
+		assertEquals(2, movies.size());
 	}
 
 	@Test
 	public void findMoviesInGenre() {
-		List<? extends Movie> movies = movieService.findMoviesInGenre("News");
-		assertEquals(1, movies.size());
-		Movie movie = movies.get(0);
-		assertEquals("Red Obsession", movie.getTitle());
+		List<? extends Movie> movies = movieService.findMoviesInGenre("Comedy");
+		assertEquals(122, movies.size());
 	}
 
 	@Test
