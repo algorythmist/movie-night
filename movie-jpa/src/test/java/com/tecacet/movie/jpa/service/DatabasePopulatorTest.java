@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import com.tecacet.movie.jpa.repository.PersonRepository;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { PersistenceConfiguration.class })
+@Transactional
 public class DatabasePopulatorTest {
 
 	@Autowired

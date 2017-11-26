@@ -70,7 +70,6 @@ public class PersistenceConfiguration {
 	public Properties hibernateProperties() {
 		Properties hibernateProp = new Properties();
 		//hibernateProp.put("hibernate.show_sql", true);
-		//hibernateProp.put("hibernate.jmx.enabled", true);
 		//TODO hibernateProp.put("hibernate.generate_statistics", true);
 		//hibernateProp.put("hibernate.session_factory_name", "sessionFactory");
 		return hibernateProp;

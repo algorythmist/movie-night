@@ -13,4 +13,6 @@ public interface MovieGenreRepository extends Repository<MovieGenre, Long>{
 
 	@Query("select mg.movie from MovieGenre mg where mg.genre.name = :genre")
 	List<EntityMovie> findMoviesInGenre(@Param("genre") String genre);
+	
+	List<MovieGenre> findAll();
 }

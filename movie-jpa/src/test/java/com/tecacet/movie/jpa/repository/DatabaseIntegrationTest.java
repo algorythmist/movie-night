@@ -29,6 +29,8 @@ public class DatabaseIntegrationTest {
 	private GenreRepository genreRepository;
 	@Autowired
 	private MovieRepository movieRepository;
+	@Autowired
+	private MovieGenreRepository movieGenreRepository;
 	
 	@Test
 	public void movieWithGenres() {
@@ -49,9 +51,11 @@ public class DatabaseIntegrationTest {
 		Optional<EntityMovie> optional = movieRepository.findById(movie.getId());
 		EntityMovie found = optional.get();
 		assertEquals("Elegance", found.getTitle());
-		System.out.println(found.getGenres()); //TODO
+		assertEquals("[Action, Comedy]", found.getGenres().toString()); 
 		
 		movieRepository.delete(found);
+		
+		assertTrue(movieGenreRepository.findAll().isEmpty());
 		
 		List<EntityGenre> genres = genreRepository.findAll();
 		System.out.println(genres); //TODO

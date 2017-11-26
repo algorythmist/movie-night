@@ -57,7 +57,7 @@ public class MovieRepositoryTest {
 		assertEquals(0, allMovies.size());
 
 	}
-
+	
 	private EntityMovie createMovie() {
 		EntityMovie movie = new EntityMovie("Elegance");
 		movie.setYear(2002);
