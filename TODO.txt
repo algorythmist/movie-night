@@ -1,9 +1,6 @@
 Code
 - better AOP/JMX example
-- Monitoring with Maven plugins
-- Spring integration metrics
 - negative tests
-- fast delete
 
 Presentation
 - Cover slide
@@ -13,19 +10,19 @@ Presentation
 - Flyway auto-migrate
 - Hibernate properties
 - LazyInitException example
+- Spring Metrics
+- Spring Boot actuators
+- logging queries
 
 Maybe
 - Auditing
-- Dynamic queries with criteria/spec
-- prometheus metrics
-- Spring Boot actuators
-- Mock web service for testing client
-- logging queries
+- Dynamic queries with criteria/specs
 - Mockito
-- complete REST client app
+- Mock web service for testing client
 - movie-rest cleanup 
-- deploy to staging database
 - HAL browser
+- deploy to staging database
+- prometheus metrics
 
 
 
