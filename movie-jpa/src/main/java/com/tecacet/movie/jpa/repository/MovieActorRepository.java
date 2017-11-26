@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.model.MovieActor;
 
-//TODO make read-only repository
 public interface MovieActorRepository extends Repository<MovieActor, Long> {
 
 	@Query("select mp.movie from MovieActor mp where mp.actor.name = :name")
