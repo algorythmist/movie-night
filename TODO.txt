@@ -1,6 +1,5 @@
 Code
 - better AOP/JMX example
-- LazyInitException example
 - Monitoring with Maven plugins
 - Spring integration metrics
 - negative tests
@@ -13,6 +12,7 @@ Presentation
 - HB stats
 - Flyway auto-migrate
 - Hibernate properties
+- LazyInitException example
 
 Maybe
 - Auditing
