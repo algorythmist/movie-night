@@ -14,6 +14,7 @@ Presentation
 - Spring Boot actuators
 - logging queries
 - diagrams for ORM mappings
+- source code
 
 Maybe
 - Auditing
