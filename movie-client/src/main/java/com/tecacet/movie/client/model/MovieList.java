@@ -2,6 +2,6 @@ package com.tecacet.movie.client.model;
 
 import java.util.ArrayList;
 
-public class Movies extends ArrayList<Movie> {
+public class MovieList extends ArrayList<Movie> {
 
 }
