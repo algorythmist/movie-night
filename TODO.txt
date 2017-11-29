@@ -5,16 +5,16 @@ Code
 Presentation
 - Cover slide
 - Who Am I
+- Specifications
 - Dependency graph
-- HB stats
 - Flyway auto-migrate
 - Hibernate properties
-- LazyInitException example
+- HB stats
 - Spring Metrics
 - Spring Boot actuators
 - logging queries
 - diagrams for ORM mappings
-- source code
+
 
 Maybe
 - Auditing
