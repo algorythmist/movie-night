@@ -1,5 +1,7 @@
 package com.tecacet.movie.boot.jmx;
 
+import java.util.DoubleSummaryStatistics;
+
 import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
@@ -8,22 +10,25 @@ import org.springframework.stereotype.Component;
 @ManagedResource(objectName = "movieStats:name=access")
 public class AccessStatistics {
 
-	private double totalTime = 0;
-	private int invocations = 0;
+	private final DoubleSummaryStatistics stats = new DoubleSummaryStatistics();
 	
 	public synchronized void addSample(double time) {
-		totalTime += time;
-		invocations++;
+		stats.accept(time);
 	}
 
 	@ManagedAttribute
 	public double getAverageTime() {
-		return invocations == 0 ? 0 : totalTime /invocations;
+		return stats.getAverage();
 	}
 
 	@ManagedAttribute
-	public int getInvocations() {
-		return invocations;
+	public long getInvocations() {
+		return stats.getCount();
+	}
+	
+	@ManagedAttribute
+	public double getMax() {
+		return stats.getMax();
 	}
 	
 	
