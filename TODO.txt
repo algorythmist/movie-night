@@ -3,9 +3,10 @@ Code
 - negative tests
 
 Presentation
-- Cover slide
+- Put name on cover slide
 - Who Am I
 - Specifications
+- examples of JPQL
 - Dependency graph
 - Flyway auto-migrate
 - Hibernate properties
