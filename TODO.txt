@@ -3,19 +3,12 @@ Code
 - negative tests
 
 Presentation
-- Put name on cover slide
-- Who Am I
 - Specifications
-- examples of JPQL
-- Dependency graph
-- Flyway auto-migrate
 - Hibernate properties
 - HB stats
 - Spring Metrics
-- Spring Boot actuators
 - logging queries
 - diagrams for ORM mappings
-
 
 Maybe
 - Auditing

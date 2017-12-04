@@ -1,6 +1,5 @@
 package com.tecacet.movie.boot.service;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,11 +17,11 @@ public class MemoryLeakService {
 			this.name = name;
 		}
 	}
-	private Map<NastyObject, LocalDateTime> map = new HashMap<>();
+	private Map<NastyObject, Object> map = new HashMap<>();
 	
 	@Scheduled(fixedRate = 1000)
 	public void storeObject() {
-		map.put(new NastyObject("Hello"), LocalDateTime.now());
+		map.put(new NastyObject("Hello"), new String[100000]);
 	}
 
 }
