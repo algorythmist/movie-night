@@ -1,6 +1,7 @@
 package com.tecacet.movie.client.service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.web.client.RestTemplate;
 
@@ -9,31 +10,46 @@ import com.tecacet.movie.client.model.GenreList;
 
 public class RestGenreService implements GenreService {
 
-	private static final String LIST_URL = "http://localhost:8080/genres/list";
-	private static final String CREATE_URL = "http://localhost:8080/genres/";
-	private static final String BY_ID_URL = "http://localhost:8080/genres/{id}";
-	private static final String  BY_NAME  = "http://localhost:8080/genres/byname/{name}";
+	private final Logger logger = Logger.getLogger("genreService");
+
+	private static final String LIST_URL = "/genres/list";
+	private static final String CREATE_URL = "/genres/";
+	private static final String BY_ID_URL = "/genres/{id}";
+	private static final String BY_NAME = "/genres/byname/{name}";
 
 	private final RestTemplate restTemplate = new RestTemplate();
 
-	@Override
-	public List<Genre> getAllGenres() {
-		return restTemplate.getForObject(LIST_URL, GenreList.class);
+	private final String baseUrl;
+
+	public RestGenreService(String baseUrl) {
+		super();
+		this.baseUrl = baseUrl;
 	}
 
 	@Override
 	public Genre create(String name) {
-		return restTemplate.postForObject(CREATE_URL, name, Genre.class);
+		return restTemplate.postForObject(baseUrl + CREATE_URL, name, Genre.class);
+	}
+
+	@Override
+	public List<Genre> getAllGenres() {
+		String url = baseUrl + LIST_URL;
+		logger.info("getAllGenres: " + url);
+		return restTemplate.getForObject(url, GenreList.class);
 	}
 
 	@Override
 	public Genre findGenreById(long id) {
-		return restTemplate.getForObject(BY_ID_URL, Genre.class, id);
+		String url = baseUrl + BY_ID_URL;
+		logger.info("findGenreById: " + url);
+		return restTemplate.getForObject(url, Genre.class, id);
 	}
 
 	@Override
-	public Genre findGenreByName(String name)  {
-		return restTemplate.getForObject(BY_NAME, Genre.class, "name");
+	public Genre findGenreByName(String name) {
+		String url = baseUrl + BY_NAME;
+		logger.info("findGenreByName: " + url);
+		return restTemplate.getForObject(url, Genre.class, "name");
 	}
 
 	@Override
