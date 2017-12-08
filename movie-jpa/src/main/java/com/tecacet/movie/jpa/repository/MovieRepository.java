@@ -2,11 +2,9 @@ package com.tecacet.movie.jpa.repository;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -18,9 +16,7 @@ public interface MovieRepository extends CrudRepository<EntityMovie, Long>, JpaS
 
 	List<EntityMovie> findByTitleContainingIgnoreCase(String title);
 
-	@Modifying
-	@Transactional(value = TxType.REQUIRED)
-	@Query(value = "truncate table movie_genre, movie_actor, movie_director, movie", nativeQuery = true)
-	void truncate();
+	@Query("from EntityMovie m where rating is not null order by rating desc, title asc")
+	Page<EntityMovie> findTopMovies(Pageable pageable);
 
 }

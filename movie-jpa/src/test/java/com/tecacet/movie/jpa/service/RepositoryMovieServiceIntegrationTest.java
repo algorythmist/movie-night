@@ -31,6 +31,9 @@ public class RepositoryMovieServiceIntegrationTest {
 	private MovieService movieService;
 	
 	@Autowired
+	private RepositoryMovieService repositoryMovieService;
+	
+	@Autowired
 	private DatabasePopulator databasePopulator;
 	
 	private AtomicBoolean loaded = new AtomicBoolean(false);
@@ -91,5 +94,11 @@ public class RepositoryMovieServiceIntegrationTest {
 		assertEquals(1, movies.size());
 		Movie movie = movies.get(0);
 		assertFalse(movie.getRating().isPresent());
+	}
+	
+	@Test
+	public void findTopMovies() {
+		List<? extends Movie> movies = repositoryMovieService.findTopMovies(5);
+		System.out.println(movies);
 	}
 }

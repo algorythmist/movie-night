@@ -18,7 +18,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
@@ -39,7 +39,7 @@ public class EntityMovie implements Movie {
 	@Past(message="Are you from the future?")
 	private LocalDate releaseDate;
 	private String plot;
-	@Positive
+	@PositiveOrZero
 	private int duration;
 	private Double rating;
 	private String imageUrl;
