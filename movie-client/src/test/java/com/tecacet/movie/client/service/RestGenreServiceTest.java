@@ -21,8 +21,6 @@ public class RestGenreServiceTest {
 	@Test
 	public void test() throws IOException {
 		MockWebServer server = new MockWebServer();
-		
-		//server.enqueue(mockResponse);
 		server.setDispatcher(new MockRequestDispatcher());
 		// Start the server.
 		server.start();

@@ -28,7 +28,9 @@ public class RestGenreService implements GenreService {
 
 	@Override
 	public Genre create(String name) {
-		return restTemplate.postForObject(baseUrl + CREATE_URL, name, Genre.class);
+		String url = baseUrl + CREATE_URL;
+		logger.info("getAllGenres: " + url);
+		return restTemplate.postForObject(url, name, Genre.class);
 	}
 
 	@Override
@@ -54,6 +56,8 @@ public class RestGenreService implements GenreService {
 
 	@Override
 	public void delete(long id) {
-		restTemplate.delete(BY_ID_URL, id);
+		String url = baseUrl + BY_ID_URL;
+		logger.info("findGenreById: " + url);
+		restTemplate.delete(url, id);
 	}
 }
