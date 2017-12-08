@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
+import javax.validation.ConstraintViolationException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,8 +45,7 @@ public class MovieRepositoryTest {
 		assertEquals(90, entityMovie.getDuration());
 		assertEquals(LocalDate.of(2012, 3, 4), entityMovie.getReleaseDate());
 		assertEquals(1.2, entityMovie.getRating().orElse(null), 0.001);
-		
-		
+
 		List<EntityMovie> byTitle = movieRepository.findByTitleContainingIgnoreCase("elegance");
 		assertEquals(1, byTitle.size());
 
@@ -55,9 +55,17 @@ public class MovieRepositoryTest {
 		movieRepository.delete(movie);
 		allMovies = movieRepository.findAll();
 		assertEquals(0, allMovies.size());
-
 	}
-	
+
+	@Test(expected = ConstraintViolationException.class)
+	public void validation() {
+
+		EntityMovie movie = createMovie();
+		movie.setYear(1890);
+		movie.setDuration(-10);
+		movieRepository.save(movie);
+	}
+
 	private EntityMovie createMovie() {
 		EntityMovie movie = new EntityMovie("Elegance");
 		movie.setYear(2002);

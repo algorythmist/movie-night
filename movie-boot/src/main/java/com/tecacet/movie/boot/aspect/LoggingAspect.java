@@ -19,8 +19,8 @@ import org.springframework.util.StopWatch;
 public class LoggingAspect {
 
 	private final Logger logger = LoggerFactory.getLogger("TIMING");
-	
-	@Around("within(com.tecacet.movie.jpa..*)")
+
+	@Around("execution(* com.tecacet.movie.jpa..*(..))")
 	public Object logActivity(ProceedingJoinPoint joinPoint) throws Throwable {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
