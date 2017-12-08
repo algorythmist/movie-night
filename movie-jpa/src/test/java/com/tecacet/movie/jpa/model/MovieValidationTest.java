@@ -31,12 +31,13 @@ public class MovieValidationTest {
 		
 		Map<String, ConstraintViolation<EntityMovie>> byProperty =
 				violations.stream().collect(Collectors.toMap(c -> c.getPropertyPath().toString(),c-> c));
+		
 		ConstraintViolation<EntityMovie> violation = byProperty.get("title");
 		assertEquals("must not be empty", violation.getMessage());
 		violation = byProperty.get("year");
 		assertEquals("must be greater than or equal to 1900", violation.getMessage());
 		violation = byProperty.get("releaseDate");
-		assertEquals("must be a past date", violation.getMessage());
+		assertEquals("Are you from the future?", violation.getMessage());
 	}
 
 }

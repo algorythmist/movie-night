@@ -36,7 +36,7 @@ public class EntityMovie implements Movie {
 	@Min(1900)
 	@Max(2018)
 	private int year;
-	@Past
+	@Past(message="Are you from the future?")
 	private LocalDate releaseDate;
 	private String plot;
 	@Positive
