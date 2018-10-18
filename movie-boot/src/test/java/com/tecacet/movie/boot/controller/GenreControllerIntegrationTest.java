@@ -17,11 +17,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.tecacet.movie.boot.Application;
 import com.tecacet.movie.jpa.model.EntityGenre;
 import com.tecacet.movie.jpa.repository.GenreRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes=Application.class)
 public class GenreControllerIntegrationTest {
 
 	private static final String LIST_URL = "/genres/list";
