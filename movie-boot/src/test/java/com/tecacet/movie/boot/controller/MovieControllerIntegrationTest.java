@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.tecacet.movie.boot.Application;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,7 @@ import com.tecacet.movie.jpa.model.EntityMovie;
 import com.tecacet.movie.jpa.repository.MovieRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT, classes= Application.class)
 public class MovieControllerIntegrationTest {
 
 	private static final String CREATE_URL = "/movies/";
