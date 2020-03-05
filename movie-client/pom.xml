@@ -10,10 +10,10 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<spring.version>5.0.1.RELEASE</spring.version>
-		<jackson.version>2.9.9</jackson.version>
-		<junit.version>4.12</junit.version>
-		<mockwebserver.version>3.9.1</mockwebserver.version>
+		<spring.version>5.2.4.RELEASE</spring.version>
+		<jackson.version>2.10.3</jackson.version>
+		<junit.version>4.13</junit.version>
+		<mockwebserver.version>4.4.0</mockwebserver.version>
 	</properties>
 
 	<dependencies>

@@ -13,8 +13,6 @@
 	<artifactId>movie-parser</artifactId>
 
 	<properties>
-		<movie.version>0.0.1-SNAPSHOT</movie.version>
-		<jackson.version>2.9.9</jackson.version>
 		<jacoco.coverage.lines>0.90</jacoco.coverage.lines>
 	</properties>
 
@@ -22,7 +20,7 @@
 		<dependency>
 			<groupId>com.tecacet</groupId>
 			<artifactId>movie-model</artifactId>
-			<version>${movie.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

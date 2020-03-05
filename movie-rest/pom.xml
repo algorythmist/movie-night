@@ -11,20 +11,18 @@
 
 	<properties>
 		<servlet.version>4.0.0</servlet.version>
-		<jackson.version>2.9.9</jackson.version>
-		<h2.version>1.4.196</h2.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.tecacet</groupId>
 			<artifactId>movie-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.tecacet</groupId>
 			<artifactId>movie-jpa</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
