@@ -1,4 +1,4 @@
-package com.tecacet.movie.jpa.service;
+package com.tecacet.movie.service;
 
 import com.tecacet.movie.domain.Director;
 
