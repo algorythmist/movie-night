@@ -24,7 +24,7 @@ public class MovieValidationTest {
 	
 		EntityMovie invalidMovie = new EntityMovie(""); 
 		invalidMovie.setYear(1204); //sack of Constantinople by the Crusaders
-		invalidMovie.setReleaseDate(LocalDate.of(2020, 3, 12));
+		invalidMovie.setReleaseDate(LocalDate.now().plusMonths(2));
 		invalidMovie.setDuration(10);
 		
 		Set<ConstraintViolation<EntityMovie>> violations = validator.validate(invalidMovie);
