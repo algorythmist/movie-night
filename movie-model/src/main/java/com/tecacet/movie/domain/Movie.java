@@ -6,24 +6,24 @@ import java.util.Optional;
 
 public interface Movie {
 
-	String getTitle();
+    String getTitle();
 
-	int getYear();
+    int getYear();
 
-	LocalDate getReleaseDate();
+    LocalDate getReleaseDate();
 
-	String getPlot();
+    String getPlot();
 
-	int getDuration();
+    int getDuration();
 
-	Optional<Double> getRating();
+    Optional<Double> getRating();
 
-	String getImageUrl();
-	
-	List<? extends Person> getActors();
+    String getImageUrl();
 
-	List<? extends Person> getDirectors();
+    List<? extends Person> getActors();
 
-	List<? extends Genre> getGenres();
+    List<? extends Person> getDirectors();
+
+    List<? extends Genre> getGenres();
 
 }

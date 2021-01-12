@@ -4,18 +4,17 @@ import java.util.Set;
 
 /**
  * An aggregate object for Director
- * 
- * @author dimitri
  *
+ * @author dimitri
  */
 public interface Director {
 
-	String getName();
+    String getName();
 
-	double getRating();
+    double getRating();
 
-	Set<String> getGenres();
+    Set<String> getGenres();
 
-	int getMovies();
+    int getMovies();
 
 }

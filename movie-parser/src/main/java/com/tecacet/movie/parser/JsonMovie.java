@@ -1,167 +1,168 @@
 package com.tecacet.movie.parser;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * Movie implementation with Jackson annotations for mapping to JSON
- * 
- * @author dimitri
  *
+ * @author dimitri
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonMovie implements Movie {
 
-	private class SimpleGenre implements Genre {
-		private final String name;
+    private String title;
+    private int year;
+    @JsonDeserialize
+    private Info info;
 
-		public SimpleGenre(String name) {
-			this.name = name;
-		}
+    @Override
+    public String getTitle() {
+        return title;
+    }
 
-		public String getName() {
-			return name;
-		}
+    @Override
+    public int getYear() {
+        return year;
+    }
 
-		@Override
-		public String toString() {
-			return name;
-		}
-	}
-	
-	private class SimplePerson implements Person {
-		private final String name;
+    @Override
+    public LocalDate getReleaseDate() {
+        return info.getRelease_date();
+    }
 
-		public SimplePerson(String name) {
-			this.name = name;
-		}
+    @Override
+    public String getPlot() {
+        return info.getPlot();
+    }
 
-		public String getName() {
-			return name;
-		}
+    @Override
+    public int getDuration() {
+        return info.getRunning_time_secs() / 60;
+    }
 
-		@Override
-		public String toString() {
-			return name;
-		}
-	}
+    @Override
+    public Optional<Double> getRating() {
+        return Optional.ofNullable(info.getRating());
+    }
 
-	@JsonIgnoreProperties(ignoreUnknown = true)
-	public class Info {
+    @Override
+    public String getImageUrl() {
+        return info.getImage_url();
+    }
 
-		@JsonDeserialize(using = LocalDateDeserializer.class)
-		private LocalDate release_date;
-		private int running_time_secs;
-		private Double rating;
-		private String image_url;
-		private String plot;
-		private List<String> directors = new ArrayList<>();
-		private List<String> genres = new ArrayList<>();
-		private List<String> actors = new ArrayList<>();
+    @Override
+    public List<? extends Person> getDirectors() {
+        return info.getDirectors().stream().map(SimplePerson::new).collect(Collectors.toList());
+    }
 
-		public Double getRating() {
-			return rating;
-		}
+    @Override
+    public List<? extends Person> getActors() {
+        return info.getActors().stream().map(SimplePerson::new).collect(Collectors.toList());
+    }
 
-		public String getPlot() {
-			return plot;
-		}
+    @Override
+    public List<? extends Genre> getGenres() {
+        return info.getGenres().stream().map(SimpleGenre::new).collect(Collectors.toList());
+    }
 
-		public List<String> getDirectors() {
-			return directors;
-		}
+    @Override
+    public String toString() {
+        String rating = getRating().isPresent() ? getRating().get().toString() : "No rating";
+        return String.format("%s (%d): %s", getTitle(), getYear(), rating);
+    }
 
-		public List<String> getActors() {
-			return actors;
-		}
 
-		public List<String> getGenres() {
-			return genres;
-		}
+    private class SimpleGenre implements Genre {
+        private final String name;
 
-		public String getImage_url() {
-			return image_url;
-		}
+        public SimpleGenre(String name) {
+            this.name = name;
+        }
 
-		public int getRunning_time_secs() {
-			return running_time_secs;
-		}
+        public String getName() {
+            return name;
+        }
 
-		public LocalDate getRelease_date() {
-			return release_date;
-		}
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
 
-	}
 
-	private String title;
-	private int year;
+    private class SimplePerson implements Person {
+        private final String name;
 
-	@JsonDeserialize
-	private Info info;
+        public SimplePerson(String name) {
+            this.name = name;
+        }
 
-	@Override
-	public String getTitle() {
-		return title;
-	}
+        public String getName() {
+            return name;
+        }
 
-	@Override
-	public int getYear() {
-		return year;
-	}
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
 
-	@Override
-	public LocalDate getReleaseDate() {
-		return info.getRelease_date();
-	}
 
-	@Override
-	public String getPlot() {
-		return info.getPlot();
-	}
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public class Info {
 
-	@Override
-	public int getDuration() {
-		return info.getRunning_time_secs() / 60;
-	}
+        @JsonDeserialize(using = LocalDateDeserializer.class)
+        private LocalDate release_date;
+        private int running_time_secs;
+        private Double rating;
+        private String image_url;
+        private String plot;
+        private final List<String> directors = new ArrayList<>();
+        private final List<String> genres = new ArrayList<>();
+        private final List<String> actors = new ArrayList<>();
 
-	@Override
-	public Optional<Double> getRating() {
-		return Optional.ofNullable(info.getRating());
-	}
+        public Double getRating() {
+            return rating;
+        }
 
-	@Override
-	public String getImageUrl() {
-		return info.getImage_url();
-	}
+        public String getPlot() {
+            return plot;
+        }
 
-	@Override
-	public List<? extends Person> getDirectors() {
-		return info.getDirectors().stream().map(name -> new SimplePerson(name)).collect(Collectors.toList());
-	}
+        public List<String> getDirectors() {
+            return directors;
+        }
 
-	@Override
-	public List<? extends Person> getActors() {
-		return info.getActors().stream().map(name -> new SimplePerson(name)).collect(Collectors.toList());
-	}
+        public List<String> getActors() {
+            return actors;
+        }
 
-	@Override
-	public List<? extends Genre> getGenres() {
-		return info.getGenres().stream().map(name -> new SimpleGenre(name)).collect(Collectors.toList());
-	}
+        public List<String> getGenres() {
+            return genres;
+        }
 
-	@Override
-	public String toString() {
-		String rating = getRating().isPresent() ? getRating().get().toString() : "No rating";
-		return String.format("%s (%d): %s", getTitle(), getYear(), rating);
-	}
+        public String getImage_url() {
+            return image_url;
+        }
+
+        public int getRunning_time_secs() {
+            return running_time_secs;
+        }
+
+        public LocalDate getRelease_date() {
+            return release_date;
+        }
+
+    }
 
 }
