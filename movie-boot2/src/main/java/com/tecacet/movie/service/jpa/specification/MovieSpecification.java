@@ -1,4 +1,4 @@
-package com.tecacet.movie.jpa.specification;
+package com.tecacet.movie.service.jpa.specification;
 
 
 import com.tecacet.movie.entity.EntityMovie;

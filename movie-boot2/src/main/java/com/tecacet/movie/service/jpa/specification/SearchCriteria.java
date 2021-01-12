@@ -1,4 +1,4 @@
-package com.tecacet.movie.jpa.specification;
+package com.tecacet.movie.service.jpa.specification;
 
 public class SearchCriteria {
 
