@@ -10,4 +10,3 @@ create table movie (
 );
 
 create index movie_title_ix on movie(title);
-create unique index movie_title_year_ux on movie(title, year);

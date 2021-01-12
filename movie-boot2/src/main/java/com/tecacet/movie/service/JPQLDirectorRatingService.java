@@ -13,9 +13,7 @@ import javax.persistence.Query;
 @Service
 public class JPQLDirectorRatingService implements DirectorRatingService {
 
-    private final EntityManager entityManager;
-
-    private final String queryStr = "select new com.tecacet.movie.jpa.service.ImmutableDirector(d.name, AVG(m.rating), COUNT(m))" +
+    private static final String QUERY_DIRECTORS = "select new com.tecacet.movie.service.ImmutableDirector(d.name, AVG(m.rating), COUNT(m))" +
             "from MovieDirector md inner join md.director d " +
             "inner join md.movie m " +
             "where m.rating is not null " +
@@ -23,6 +21,7 @@ public class JPQLDirectorRatingService implements DirectorRatingService {
             "having COUNT(m) > 2 " +
             "order by AVG(m.rating) desc,  COUNT(m) desc";
 
+    private final EntityManager entityManager;
 
     @Autowired
     public JPQLDirectorRatingService(EntityManager entityManager) {
@@ -32,7 +31,7 @@ public class JPQLDirectorRatingService implements DirectorRatingService {
 
     @Override
     public List<? extends Director> findTopDirectors(int top) {
-        Query query = entityManager.createQuery(queryStr, Director.class).setMaxResults(top);
+        Query query = entityManager.createQuery(QUERY_DIRECTORS, Director.class).setMaxResults(top);
         return query.getResultList();
     }
 }
