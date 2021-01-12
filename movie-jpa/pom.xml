@@ -13,6 +13,7 @@
 
 	<properties>
 		<movie.version>0.0.1-SNAPSHOT</movie.version>
+		<spring.version>5.2.4.RELEASE</spring.version>
 		<spring-data.version>[2.2.0,)</spring-data.version>
 		<hikaricp.version>3.4.2</hikaricp.version>
 		<hibernate.version>5.4.12.Final</hibernate.version>

@@ -10,6 +10,7 @@
 	<artifactId>movie-rest</artifactId>
 
 	<properties>
+		<spring.version>5.2.4.RELEASE</spring.version>
 		<servlet.version>4.0.0</servlet.version>
 	</properties>
 
