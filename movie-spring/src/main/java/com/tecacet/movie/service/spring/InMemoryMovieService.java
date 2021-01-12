@@ -1,5 +1,16 @@
 package com.tecacet.movie.service.spring;
 
+import com.tecacet.movie.domain.Genre;
+import com.tecacet.movie.domain.Movie;
+import com.tecacet.movie.domain.Person;
+import com.tecacet.movie.parser.MovieParser;
+import com.tecacet.movie.service.MovieService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,224 +19,215 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.tecacet.movie.domain.Genre;
-import com.tecacet.movie.domain.Movie;
-import com.tecacet.movie.domain.Person;
-import com.tecacet.movie.parser.MovieParser;
-import com.tecacet.movie.service.MovieService;
-
 /**
  * In Memory implementation of the MovieService
- * 
- * @author dimitri
  *
+ * @author dimitri
  */
 @Service
 public class InMemoryMovieService implements MovieService {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	private final List<Movie> movies = new ArrayList<>();
-	private final Map<String, EnrichedPerson> personsByName = new TreeMap<>();
-	private final Map<String, EnrichedGenre> genresByName = new TreeMap<>();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private class EnrichedGenre implements Genre {
-		private final String name;
-		private final List<Movie> movies = new ArrayList<>();
+    private final List<Movie> movies = new ArrayList<>();
+    private final Map<String, EnrichedPerson> personsByName = new TreeMap<>();
+    private final Map<String, EnrichedGenre> genresByName = new TreeMap<>();
 
-		public EnrichedGenre(String name) {
-			super();
-			this.name = name;
-		}
 
-		@Override
-		public String getName() {
-			return name;
-		}
+    @Autowired
+    public InMemoryMovieService(MovieParser movieParser) throws IOException {
+        this(movieParser.parse("moviedata.json"));
+    }
 
-		public List<Movie> getMovies() {
-			return movies;
-		}
 
-		public void addMovie(Movie movie) {
-			movies.add(movie);
-		}
-		
-		@Override
-		public String toString() {
-			return name;
-		}
+    private InMemoryMovieService(List<? extends Movie> allMovies) {
+        logger.info("Registering {} movies with the service", allMovies.size());
+        for (Movie movie : allMovies) {
+            movies.add(movie);
+            registerActors(movie);
+            registerDirectors(movie);
+            registerGenres(movie);
+        }
+    }
 
-	}
+    private void registerGenres(Movie movie) {
+        for (Genre g : movie.getGenres()) {
+            EnrichedGenre genre = findGenre(g.getName());
+            genre.addMovie(movie);
+        }
+    }
 
-	private class EnrichedPerson implements Person {
-		private final String name;
+    private void registerDirectors(Movie movie) {
+        for (Person p : movie.getDirectors()) {
+            EnrichedPerson person = findPerson(p.getName());
+            person.addMovieDirected(movie);
+            person.setDirector(true);
+        }
+    }
 
-		private boolean isActor = false;
-		private boolean isDirector = false;
-		private final List<Movie> moviesActed = new ArrayList<>();
-		private final List<Movie> moviesDirected = new ArrayList<>();
+    private void registerActors(Movie movie) {
+        for (Person p : movie.getActors()) {
+            EnrichedPerson person = findPerson(p.getName());
+            person.addMovieActed(movie);
+            person.setActor(true);
+        }
+    }
 
-		public EnrichedPerson(String name) {
-			super();
-			this.name = name;
-		}
+    private EnrichedGenre findGenre(String name) {
+        EnrichedGenre genre = genresByName.get(name);
+        if (genre == null) {
+            genre = new EnrichedGenre(name);
+            genresByName.put(name, genre);
+        }
+        return genre;
+    }
 
-		@Override
-		public String getName() {
-			return name;
-		}
-		
-		@Override
-		public String toString() {
-			return name;
-		}
+    private EnrichedPerson findPerson(String name) {
+        EnrichedPerson person = personsByName.get(name);
+        if (person == null) {
+            person = new EnrichedPerson(name);
+            personsByName.put(name, person);
+        }
+        return person;
+    }
 
-		public boolean isActor() {
-			return isActor;
-		}
+    @Override
+    public List<Movie> findMoviesWithActor(String actorName) {
+        EnrichedPerson person = personsByName.get(actorName);
+        if (person == null) {
+            return Collections.emptyList();
+        }
+        return person.getMoviesActed();
+    }
 
-		public void setActor(boolean isActor) {
-			this.isActor = isActor;
-		}
+    @Override
+    public List<Movie> findMoviesWithDirector(String directorName) {
+        EnrichedPerson person = personsByName.get(directorName);
+        if (person == null) {
+            return Collections.emptyList();
+        }
+        return person.getMoviesDirected();
+    }
 
-		public boolean isDirector() {
-			return isDirector;
-		}
+    @Override
+    public List<Movie> getAllMovies() {
+        return new ArrayList<>(movies);
+    }
 
-		public void setDirector(boolean isDirector) {
-			this.isDirector = isDirector;
-		}
+    @Override
+    public List<Person> getAllActors() {
+        return personsByName.values().stream().filter(EnrichedPerson::isActor).collect(Collectors.toList());
+    }
 
-		public void addMovieActed(Movie movie) {
-			moviesActed.add(movie);
-		}
+    @Override
+    public List<Person> getAllDirectors() {
+        return personsByName.values().stream().filter(EnrichedPerson::isDirector).collect(Collectors.toList());
+    }
 
-		public void addMovieDirected(Movie movie) {
-			moviesDirected.add(movie);
-		}
+    @Override
+    public List<Genre> getAllGenres() {
+        return new ArrayList<>(genresByName.values());
+    }
 
-		public List<Movie> getMoviesActed() {
-			return moviesActed;
-		}
+    @Override
+    public List<Movie> findMoviesInGenre(String genreName) {
+        EnrichedGenre genre = genresByName.get(genreName);
+        if (genre == null) {
+            return Collections.emptyList();
+        }
+        return genre.getMovies();
+    }
 
-		public List<Movie> getMoviesDirected() {
-			return moviesDirected;
-		}
+    @Override
+    public List<Movie> findByTitle(String name) {
+        return movies.stream().filter(m -> name.equals(m.getTitle())).collect(Collectors.toList());
+    }
 
-	}
-	
-	@Autowired
-	public InMemoryMovieService(MovieParser movieParser) throws IOException {
-		this(movieParser.parse("moviedata.json"));
-	}
 
-	private InMemoryMovieService(List<? extends Movie> allMovies) {
-		logger.info("Registering {} movies with the service", allMovies.size());
-		for (Movie movie : allMovies) {
-			movies.add(movie);
-			registerActors(movie);
-			registerDirectors(movie);
-			registerGenres(movie);
-		}
-	}
+    private class EnrichedGenre implements Genre {
+        private final String name;
+        private final List<Movie> movies = new ArrayList<>();
 
-	private void registerGenres(Movie movie) {
-		for (Genre g : movie.getGenres()) {
-			EnrichedGenre genre = findGenre(g.getName());
-			genre.addMovie(movie);
-		}
-	}
+        public EnrichedGenre(String name) {
+            super();
+            this.name = name;
+        }
 
-	private void registerDirectors(Movie movie) {
-		for (Person p : movie.getDirectors()) {
-			EnrichedPerson person = findPerson(p.getName());
-			person.addMovieDirected(movie);
-			person.setDirector(true);
-		}
-	}
+        @Override
+        public String getName() {
+            return name;
+        }
 
-	private void registerActors(Movie movie) {
-		for (Person p : movie.getActors()) {
-			EnrichedPerson person = findPerson(p.getName());
-			person.addMovieActed(movie);
-			person.setActor(true);
-		}
-	}
+        public List<Movie> getMovies() {
+            return movies;
+        }
 
-	private EnrichedGenre findGenre(String name) {
-		EnrichedGenre genre = genresByName.get(name);
-		if (genre == null) {
-			genre = new EnrichedGenre(name);
-			genresByName.put(name, genre);
-		}
-		return genre;
-	}
+        public void addMovie(Movie movie) {
+            movies.add(movie);
+        }
 
-	private EnrichedPerson findPerson(String name) {
-		EnrichedPerson person = personsByName.get(name);
-		if (person == null) {
-			person = new EnrichedPerson(name);
-			personsByName.put(name, person);
-		}
-		return person;
-	}
+        @Override
+        public String toString() {
+            return name;
+        }
 
-	@Override
-	public List<Movie> findMoviesWithActor(String actorName) {
-		EnrichedPerson person = personsByName.get(actorName);
-		if (person == null) {
-			return Collections.emptyList();
-		}
-		return person.getMoviesActed();
-	}
+    }
 
-	@Override
-	public List<Movie> findMoviesWithDirector(String directorName) {
-		EnrichedPerson person = personsByName.get(directorName);
-		if (person == null) {
-			return Collections.emptyList();
-		}
-		return person.getMoviesDirected();
-	}
 
-	@Override
-	public List<Movie> getAllMovies() {
-		return new ArrayList<>(movies);
-	}
+    private class EnrichedPerson implements Person {
+        private final String name;
+        private final List<Movie> moviesActed = new ArrayList<>();
+        private final List<Movie> moviesDirected = new ArrayList<>();
+        private boolean isActor = false;
+        private boolean isDirector = false;
 
-	@Override
-	public List<Person> getAllActors() {
-		return personsByName.values().stream().filter(EnrichedPerson::isActor).collect(Collectors.toList());
-	}
+        public EnrichedPerson(String name) {
+            super();
+            this.name = name;
+        }
 
-	@Override
-	public List<Person> getAllDirectors() {
-		return personsByName.values().stream().filter(EnrichedPerson::isDirector).collect(Collectors.toList());
-	}
+        @Override
+        public String getName() {
+            return name;
+        }
 
-	@Override
-	public List<Genre> getAllGenres() {
-		return new ArrayList<>(genresByName.values());
-	}
+        @Override
+        public String toString() {
+            return name;
+        }
 
-	@Override
-	public List<Movie> findMoviesInGenre(String genreName) {
-		EnrichedGenre genre = genresByName.get(genreName);
-		if (genre == null) {
-			return Collections.emptyList();
-		}
-		return genre.getMovies();
-	}
+        public boolean isActor() {
+            return isActor;
+        }
 
-	@Override
-	public List<Movie> findByTitle(String name) {
-		return movies.stream().filter(m -> name.equals(m.getTitle())).collect(Collectors.toList());
-	}
+        public void setActor(boolean isActor) {
+            this.isActor = isActor;
+        }
+
+        public boolean isDirector() {
+            return isDirector;
+        }
+
+        public void setDirector(boolean isDirector) {
+            this.isDirector = isDirector;
+        }
+
+        public void addMovieActed(Movie movie) {
+            moviesActed.add(movie);
+        }
+
+        public void addMovieDirected(Movie movie) {
+            moviesDirected.add(movie);
+        }
+
+        public List<Movie> getMoviesActed() {
+            return moviesActed;
+        }
+
+        public List<Movie> getMoviesDirected() {
+            return moviesDirected;
+        }
+
+    }
 
 }
