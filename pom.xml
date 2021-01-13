@@ -13,11 +13,10 @@
 		<module>movie-parser</module>
 		<module>movie-memory</module>
 		<module>movie-spring</module>
+		<module>movie-boot2</module>
 		<module>movie-jpa</module>
 		<module>movie-rest</module>
-		<module>movie-boot</module>
 		<module>movie-client</module>
-		<module>movie-boot2</module>
 	</modules>
 
 	<properties>
