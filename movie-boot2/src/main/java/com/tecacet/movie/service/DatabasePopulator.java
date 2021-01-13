@@ -1,4 +1,4 @@
-package com.tecacet.movie.integration;
+package com.tecacet.movie.service;
 
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Person;
@@ -88,7 +88,7 @@ public class DatabasePopulator {
                 .map(Genre::getName)
                 .distinct()
                 .map(EntityGenre::new)
-                .collect(Collectors.toMap(e -> e.getName(), e -> e));
+                .collect(Collectors.toMap(EntityGenre::getName, e -> e));
     }
 
     private Map<String, EntityPerson> getPeople(List<JsonMovie> movies) {

@@ -23,7 +23,7 @@ public class StatisticsAspect {
         this.accessStatistics = accessStatistics;
     }
 
-    @Around("execution(* com.tecacet.movie.boot.controller.DatabaseController.populateData(..))")
+    @Around("execution(* com.tecacet.movie.controller.DatabaseController.populateData(..))")
     public Object logActivity(ProceedingJoinPoint joinPoint) throws Throwable {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();

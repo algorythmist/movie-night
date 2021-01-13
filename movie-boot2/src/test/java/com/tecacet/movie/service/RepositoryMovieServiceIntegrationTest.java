@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import com.tecacet.movie.domain.Genre;
 import com.tecacet.movie.domain.Movie;
 import com.tecacet.movie.domain.Person;
-import com.tecacet.movie.integration.DatabasePopulator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,7 +66,7 @@ public class RepositoryMovieServiceIntegrationTest {
     }
 
     @Test
-    public void findMoviesWithActor() throws IOException {
+    public void findMoviesWithActor() {
         List<? extends Movie> actorMovies = movieService.findMoviesWithActor("Will Smith");
         assertEquals(3, actorMovies.size());
     }

@@ -1,4 +1,4 @@
-package com.tecacet.movie.integration;
+package com.tecacet.movie.service;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.tecacet.movie.repository.GenreRepository;
 import com.tecacet.movie.repository.MovieRepository;
 import com.tecacet.movie.repository.PersonRepository;
+import com.tecacet.movie.service.DatabasePopulator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

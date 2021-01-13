@@ -4,7 +4,7 @@ package com.tecacet.movie.jpa.specification;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.tecacet.movie.entity.EntityMovie;
-import com.tecacet.movie.integration.DatabasePopulator;
+import com.tecacet.movie.service.DatabasePopulator;
 import com.tecacet.movie.repository.MovieRepository;
 import com.tecacet.movie.service.jpa.specification.MovieSpecification;
 import com.tecacet.movie.service.jpa.specification.SearchCriteria;
