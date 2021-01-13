@@ -13,6 +13,7 @@
 	<artifactId>movie-parser</artifactId>
 
 	<properties>
+		<jackson.version>2.12.1</jackson.version>
 		<jacoco.coverage.lines>0.90</jacoco.coverage.lines>
 	</properties>
 
