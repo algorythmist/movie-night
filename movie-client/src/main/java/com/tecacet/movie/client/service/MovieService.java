@@ -1,17 +1,17 @@
 package com.tecacet.movie.client.service;
 
-import java.util.List;
-
 import com.tecacet.movie.client.model.Movie;
+
+import java.util.List;
 
 public interface MovieService {
 
-	List<Movie> getAllMovies();
+    List<Movie> getAllMovies();
 
-	Movie create(Movie movie);
+    Movie create(Movie movie);
 
-	Movie findMovieById(long id);
+    Movie findMovieById(long id);
 
-	void delete(long id);
+    void delete(long id);
 
 }

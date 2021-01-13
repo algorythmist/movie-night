@@ -14,8 +14,6 @@
 		<module>movie-memory</module>
 		<module>movie-spring</module>
 		<module>movie-boot2</module>
-		<module>movie-jpa</module>
-		<module>movie-rest</module>
 		<module>movie-client</module>
 	</modules>
 

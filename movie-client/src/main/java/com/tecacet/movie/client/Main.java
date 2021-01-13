@@ -5,13 +5,13 @@ import com.tecacet.movie.client.service.GenreService;
 import com.tecacet.movie.client.service.RestGenreService;
 
 public class Main {
-		
-	public static void main(String[] args) {
-		GenreService genreService = new RestGenreService("http://localhost:8080");
-		System.out.println(genreService.getAllGenres());
-		
-		Genre genre = genreService.create("Test");
-		System.out.println(genre);
-		genreService.delete(genre.getId());
-	}
+
+    public static void main(String[] args) {
+        GenreService genreService = new RestGenreService("http://localhost:8080");
+        System.out.println(genreService.getAllGenres());
+
+        Genre genre = genreService.create("Test");
+        System.out.println(genre);
+        genreService.delete(genre.getId());
+    }
 }

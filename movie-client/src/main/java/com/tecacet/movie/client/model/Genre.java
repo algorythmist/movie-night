@@ -2,19 +2,19 @@ package com.tecacet.movie.client.model;
 
 public class Genre {
 
-	private long id;
-	private String name;
+    private long id;
+    private String name;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String toString() {
-		return String.format("%d : %s", id, name);
-	}
+    @Override
+    public String toString() {
+        return String.format("%d : %s", id, name);
+    }
 }
