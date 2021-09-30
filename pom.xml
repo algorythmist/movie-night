@@ -15,6 +15,7 @@
 		<module>movie-spring</module>
 		<module>movie-boot2</module>
 		<module>movie-client</module>
+		<module>movie-jpa</module>
 	</modules>
 
 	<properties>
@@ -27,6 +28,7 @@
 		<jackson.version>2.12.5</jackson.version>
 		<jacoco.version>0.8.7</jacoco.version>
 		<slf4j.version>1.7.32</slf4j.version>
+		<spring.version>5.3.10</spring.version>
 	</properties>
 
 	<dependencyManagement>

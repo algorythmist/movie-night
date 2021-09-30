@@ -13,7 +13,6 @@
 	<artifactId>movie-spring</artifactId>
 
 	<properties>
-		<spring.version>5.3.10</spring.version>
 		<mockito.version>3.12.4</mockito.version>
 		<jacoco.coverage.lines>0.90</jacoco.coverage.lines>
 	</properties>

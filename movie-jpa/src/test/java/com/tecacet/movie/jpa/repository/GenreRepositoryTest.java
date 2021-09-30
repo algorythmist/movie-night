@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Optional;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,7 +22,7 @@ import com.tecacet.movie.jpa.model.EntityGenre;
 @Transactional
 public class GenreRepositoryTest {
 
-	@Resource
+	@Autowired
 	private GenreRepository genreRepository;
 
 	@Test
