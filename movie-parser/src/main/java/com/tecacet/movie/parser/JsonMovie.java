@@ -121,7 +121,6 @@ public class JsonMovie implements Movie {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public class Info {
 
-        @JsonDeserialize(using = LocalDateDeserializer.class)
         private LocalDate release_date;
         private int running_time_secs;
         private Double rating;
