@@ -25,7 +25,7 @@
 
 		<h2.version>1.4.200</h2.version>
 		<junit.version>4.13.1</junit.version>
-		<jackson.version>2.12.5</jackson.version>
+		<jackson.version>2.12.6.1</jackson.version>
 		<jacoco.version>0.8.7</jacoco.version>
 		<slf4j.version>1.7.32</slf4j.version>
 		<spring.version>5.3.10</spring.version>
