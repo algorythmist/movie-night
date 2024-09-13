@@ -10,7 +10,7 @@
 	<artifactId>movie-client</artifactId>
 
 	<properties>
-		<spring.version>5.3.10</spring.version>
+		<spring.version>6.1.13</spring.version>
 		<mockwebserver.version>4.9.1</mockwebserver.version>
 	</properties>
 
