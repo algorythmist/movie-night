@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 
 @RunWith(SpringRunner.class)

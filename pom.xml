@@ -25,10 +25,9 @@
 
 		<h2.version>1.4.200</h2.version>
 		<junit.version>4.13.1</junit.version>
-		<jackson.version>2.12.7.1</jackson.version>
 		<jacoco.version>0.8.7</jacoco.version>
 		<slf4j.version>1.7.32</slf4j.version>
-		<spring.version>5.3.10</spring.version>
+		<spring.version>6.1.2</spring.version>
 	</properties>
 
 	<dependencyManagement>
@@ -36,17 +35,17 @@
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-databind</artifactId>
-				<version>${jackson.version}</version>
+				<version>2.20.1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-annotations</artifactId>
-				<version>${jackson.version}</version>
+				<version>2.20</version>
 			</dependency>
 			<dependency>
 				<groupId>com.fasterxml.jackson.datatype</groupId>
 				<artifactId>jackson-datatype-jsr310</artifactId>
-				<version>${jackson.version}</version>
+				<version>2.20.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>

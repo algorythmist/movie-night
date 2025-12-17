@@ -12,10 +12,10 @@
 	<artifactId>movie-jpa</artifactId>
 
 	<properties>
-		<spring-data.version>[2.2.0,)</spring-data.version>
+		<spring-data.version>3.2.0</spring-data.version>
 		<hikaricp.version>5.0.0</hikaricp.version>
-		<hibernate.version>5.5.7.Final</hibernate.version>
-		<hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
+		<hibernate.version>6.2.7.Final</hibernate.version>
+		<hibernate-validator.version>8.0.1.Final</hibernate-validator.version>
 		<glassfish-javax-el.version>3.0.1-b08</glassfish-javax-el.version>
 		<postgres.version>42.1.4</postgres.version>
 		<flyway.version>7.15.0</flyway.version>
@@ -40,11 +40,6 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>${hikaricp.version}</version>
@@ -56,9 +51,9 @@
 			<version>${hibernate-validator.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.el</artifactId>
-			<version>${glassfish-javax-el.version}</version>
+			<groupId>org.glassfish.expressly</groupId>
+			<artifactId>expressly</artifactId>
+			<version>5.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>

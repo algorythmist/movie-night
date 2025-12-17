@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import org.hibernate.LazyInitializationException;
 import org.junit.After;
